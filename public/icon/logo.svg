@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Token360">
+  <defs>
+    <!-- 平板印刷 / 徽章式：青绿双色环，区别于原先的紫粉渐变 -->
+    <linearGradient id="t360-ring" x1="8" y1="10" x2="56" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14b8a6"/>
+      <stop offset="0.55" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <!-- 圆角底板：标签页与浅色浏览器栏上仍可辨识 -->
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="#0a0f1c" stroke="#1e3a5f" stroke-width="1"/>
+  <!-- 主环：顶部缺口 + 箭头表示顺时针 360° -->
+  <circle
+    cx="32"
+    cy="32"
+    r="19.5"
+    stroke="url(#t360-ring)"
+    stroke-width="3.25"
+    fill="none"
+    stroke-linecap="round"
+    stroke-dasharray="104 38"
+    transform="rotate(-52 32 32)"
+  />
+  <!-- 缺口处箭头：琥珀色与青绿环形成互补 -->
+  <path fill="#fbbf24" d="M 30.5 10 L 39.5 12.5 L 30.5 15 Z"/>
+  <!-- T 字标 -->
+  <path
+    fill="#f8fafc"
+    d="M22 26h20v3.75h-7.25V42h-5.5V29.75H22V26z"
+  />
+</svg>

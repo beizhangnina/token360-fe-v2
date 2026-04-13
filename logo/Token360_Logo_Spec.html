@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Token360 — Logo Specification</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --purple: #9633AF; --bg: #FAF8F5; --card: #fff; --text: #1A1318; --text2: #3D3540; --text3: #7A7080; --border: rgba(26,19,24,0.1); --font: 'Inter',-apple-system,sans-serif; --mono: 'JetBrains Mono',monospace; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text3); padding-bottom: 12px; }
+  td { padding: 10px 16px 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  td:first-child { font-weight: 600; color: var(--text); }
+  .mono { font-family: var(--mono); font-size: 12px; color: var(--text3); }
+  code { font-family: var(--mono); font-size: 0.85em; background: #F0ECE6; padding: 2px 6px; border-radius: 4px; }
+  .section { margin-bottom: 64px; }
+  .section-bar { width: 48px; height: 4px; border-radius: 4px; background: var(--purple); margin-bottom: 12px; }
+  .section h2 { font-size: 28px; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.01em; }
+  .section h3 { font-size: 18px; font-weight: 600; margin: 28px 0 12px; }
+  .section p { color: var(--text2); margin-bottom: 12px; font-size: 15px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 768px) { .grid-2, .grid-4 { grid-template-columns: 1fr; } }
+  .logo-preview { display: flex; align-items: center; justify-content: center; min-height: 160px; border-radius: 12px; padding: 24px; }
+  .logo-preview img { max-height: 120px; width: auto; }
+  .logo-preview.dark { background: #1E1B22; }
+  .logo-preview.light { background: #fff; border: 1px solid var(--border); }
+  .logo-preview.gray { background: #eee; }
+  .file-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .file-card img { max-width: 100%; max-height: 140px; margin-bottom: 8px; border-radius: 4px; }
+  .file-card .name { font-family: var(--mono); font-size: 11px; color: var(--text3); word-break: break-all; }
+  .file-card .specs { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .hero { padding: 64px 24px; text-align: center; border-bottom: 1px solid var(--border); }
+  .hero h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; }
+  .hero p { font-size: 16px; color: var(--text2); margin-top: 8px; }
+  .hero .meta { font-size: 13px; color: var(--text3); margin-top: 16px; }
+  .check { color: #16a34a; }
+  .warn { color: #d97706; }
+  .footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; font-size: 12px; color: var(--text3); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Token360 Logo Specification</h1>
+  <p>Complete logo system — source files, variants, usage rules, and USPTO export parameters</p>
+  <div class="meta">Version 2.0 — April 2026 · Confidential</div>
+</header>
+
+<main class="container" style="padding-top:48px; padding-bottom:48px;">
+
+<!-- Logo System -->
+<section class="section">
+  <div class="section-bar"></div>
+  <h2>Logo System Overview</h2>
+
+  <h3>Variants</h3>
+  <table>
+    <thead><tr><th>Variant</th><th>Use Case</th><th>Files</th></tr></thead>
+    <tbody>
+      <tr><td>Icon (Mark only)</td><td>Favicon, app icon, avatar, small spaces</td><td class="mono">icon-light.svg, icon-dark.svg</td></tr>
+      <tr><td>Horizontal (Mark + Text)</td><td>Navbar, header, email signature</td><td class="mono">horizontal-light.svg, horizontal-dark.svg</td></tr>
+      <tr><td>Vertical (Mark + Text)</td><td>Loading screen, splash, large formats</td><td class="mono">vertical-light.svg, vertical-dark.svg</td></tr>
+      <tr><td>Text only</td><td>Footer, minimal contexts</td><td class="mono">text-light.svg, text-dark.svg</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Light Theme Variants</h3>
+  <div class="grid-4">
+    <div class="file-card"><div class="logo-preview light"><img src="png/icon-light.png" alt="Icon"></div><div class="name">icon-light</div></div>
+    <div class="file-card"><div class="logo-preview light"><img src="png/horizontal-light.png" alt="Horizontal"></div><div class="name">horizontal-light</div></div>
+    <div class="file-card"><div class="logo-preview light"><img src="png/vertical-light.png" alt="Vertical"></div><div class="name">vertical-light</div></div>
+    <div class="file-card"><div class="logo-preview light"><img src="png/text-light.png" alt="Text"></div><div class="name">text-light</div></div>
+  </div>
+
+  <h3>Dark Theme Variants</h3>
+  <div class="grid-4">
+    <div class="file-card"><div class="logo-preview dark"><img src="png/icon-dark.png" alt="Icon"></div><div class="name">icon-dark</div></div>
+    <div class="file-card"><div class="logo-preview dark"><img src="png/horizontal-dark.png" alt="Horizontal"></div><div class="name">horizontal-dark</div></div>
+    <div class="file-card"><div class="logo-preview dark"><img src="png/vertical-dark.png" alt="Vertical"></div><div class="name">vertical-dark</div></div>
+    <div class="file-card"><div class="logo-preview dark"><img src="png/text-dark.png" alt="Text"></div><div class="name">text-dark</div></div>
+  </div>
+</section>
+
+<!-- Mark Anatomy -->
+<section class="section">
+  <div class="section-bar"></div>
+  <h2>Mark Anatomy</h2>
+
+  <div class="card">
+    <h3 style="margin-top:0">Elements</h3>
+    <table>
+      <thead><tr><th>Element</th><th>Description</th><th>Color</th></tr></thead>
+      <tbody>
+        <tr><td>Letter T</td><td>Central letterform, Helvetica/Arial Bold 900</td><td class="mono">#1A0826 (light) / #FFFFFF (dark)</td></tr>
+        <tr><td>Inner Ring</td><td>Concentric circle, r=40, stroke 2.2</td><td class="mono">#9633AF at 40% opacity</td></tr>
+        <tr><td>Outer Ring</td><td>Concentric circle, r=56.6, stroke 1.5</td><td class="mono">#9633AF at 20% opacity</td></tr>
+        <tr><td>Orbit Path</td><td>Elliptical arc, rotated -28deg, stroke 3.5</td><td class="mono">Gradient #9633AF → #5A1880</td></tr>
+        <tr><td>Satellite</td><td>Circle r=11 at orbit endpoint</td><td class="mono">Radial gradient #D480EE → #9633AF → #6B1F90</td></tr>
+        <tr><td>Trail Dots</td><td>3 diminishing circles along orbit tail</td><td class="mono">#7B28A0, #6B1F90 at decreasing opacity</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Brand Colors in Logo</h3>
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <div style="text-align:center"><div style="width:64px;height:64px;border-radius:8px;background:#9633AF"></div><div class="mono" style="margin-top:4px">#9633AF</div><div style="font-size:11px;color:var(--text3)">Primary</div></div>
+    <div style="text-align:center"><div style="width:64px;height:64px;border-radius:8px;background:#5A1880"></div><div class="mono" style="margin-top:4px">#5A1880</div><div style="font-size:11px;color:var(--text3)">Deep</div></div>
+    <div style="text-align:center"><div style="width:64px;height:64px;border-radius:8px;background:#7B22A0"></div><div class="mono" style="margin-top:4px">#7B22A0</div><div style="font-size:11px;color:var(--text3)">Dark</div></div>
+    <div style="text-align:center"><div style="width:64px;height:64px;border-radius:8px;background:#D480EE"></div><div class="mono" style="margin-top:4px">#D480EE</div><div style="font-size:11px;color:var(--text3)">Light</div></div>
+    <div style="text-align:center"><div style="width:64px;height:64px;border-radius:8px;background:#6B1F90"></div><div class="mono" style="margin-top:4px">#6B1F90</div><div style="font-size:11px;color:var(--text3)">Gradient end</div></div>
+    <div style="text-align:center"><div style="width:64px;height:64px;border-radius:8px;background:#1A0826"></div><div class="mono" style="margin-top:4px">#1A0826</div><div style="font-size:11px;color:var(--text3)">T letter</div></div>
+  </div>
+</section>
+
+<!-- Wordmark -->
+<section class="section">
+  <div class="section-bar"></div>
+  <h2>Wordmark Typography</h2>
+
+  <div class="card">
+    <table>
+      <thead><tr><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Font Family</td><td class="mono">Helvetica, Arial, sans-serif</td></tr>
+        <tr><td>Font Weight</td><td class="mono">Bold (700)</td></tr>
+        <tr><td>Letter Spacing</td><td class="mono">-1px</td></tr>
+        <tr><td>"Token" color</td><td class="mono">#1A0826 (light) / #FFFFFF (dark)</td></tr>
+        <tr><td>"360" color</td><td class="mono">Gradient #9633AF → #6B1F90</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Usage Rules -->
+<section class="section">
+  <div class="section-bar"></div>
+  <h2>Usage Rules</h2>
+
+  <h3>Minimum Size</h3>
+  <table>
+    <thead><tr><th>Variant</th><th>Minimum Height</th></tr></thead>
+    <tbody>
+      <tr><td>Icon mark</td><td class="mono">24px (digital), 10mm (print)</td></tr>
+      <tr><td>Horizontal</td><td class="mono">32px (digital), 12mm (print)</td></tr>
+      <tr><td>Vertical</td><td class="mono">48px (digital), 18mm (print)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Clear Space</h3>
+  <p>Minimum clear space around the logo equals the height of the letter "T" in the mark. No other elements should intrude into this space.</p>
+
+  <h3>Background Rules</h3>
+  <table>
+    <thead><tr><th>Background</th><th>Version</th></tr></thead>
+    <tbody>
+      <tr><td>White / Light (#FAF8F5)</td><td>Use <code>*-light</code> variants</td></tr>
+      <tr><td>Dark (#1E1B22 or darker)</td><td>Use <code>*-dark</code> variants</td></tr>
+      <tr><td>Photography / Complex</td><td>Add white or dark container behind logo</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Don'ts</h3>
+  <ul style="padding-left:20px; color:var(--text2); font-size:14px; line-height:2">
+    <li>Don't rotate or skew the logo</li>
+    <li>Don't change the colors of individual elements</li>
+    <li>Don't add drop shadows, outlines, or effects</li>
+    <li>Don't place on busy or low-contrast backgrounds without a container</li>
+    <li>Don't stretch or distort proportions</li>
+    <li>Don't separate the mark from the wordmark in horizontal/vertical variants</li>
+  </ul>
+</section>
+
+<!-- File Inventory -->
+<section class="section">
+  <div class="section-bar"></div>
+  <h2>File Inventory</h2>
+
+  <h3>Source Files (SVG)</h3>
+  <table>
+    <thead><tr><th>File</th><th>Variant</th><th>Theme</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">svg/icon-light.svg</td><td>Mark only</td><td>Light</td></tr>
+      <tr><td class="mono">svg/icon-dark.svg</td><td>Mark only</td><td>Dark</td></tr>
+      <tr><td class="mono">svg/horizontal-light.svg</td><td>Mark + Text</td><td>Light</td></tr>
+      <tr><td class="mono">svg/horizontal-dark.svg</td><td>Mark + Text</td><td>Dark</td></tr>
+      <tr><td class="mono">svg/vertical-light.svg</td><td>Stacked</td><td>Light</td></tr>
+      <tr><td class="mono">svg/vertical-dark.svg</td><td>Stacked</td><td>Dark</td></tr>
+      <tr><td class="mono">svg/text-light.svg</td><td>Text only</td><td>Light</td></tr>
+      <tr><td class="mono">svg/text-dark.svg</td><td>Text only</td><td>Dark</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Raster Exports (PNG)</h3>
+  <p>Transparent background, suitable for web and presentations. Located in <code>png/</code></p>
+
+  <h3>Website Implementation</h3>
+  <table>
+    <thead><tr><th>Location</th><th>Variant</th><th>CSS Height</th></tr></thead>
+    <tbody>
+      <tr><td>Navbar</td><td class="mono">horizontal-light / horizontal-dark</td><td class="mono">h-14 (56px)</td></tr>
+      <tr><td>Favicon</td><td class="mono">icon-light.png</td><td class="mono">36x36</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- USPTO -->
+<section class="section">
+  <div class="section-bar"></div>
+  <h2>USPTO Trademark Exports</h2>
+
+  <p>JPEG files prepared for United States Patent and Trademark Office submission, compliant with all TEAS filing requirements.</p>
+
+  <h3>Export Parameters</h3>
+  <div class="card">
+    <table>
+      <thead><tr><th>Parameter</th><th>Value</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Format</td><td class="mono">JPEG (.jpg)</td><td class="check">&#10003;</td></tr>
+        <tr><td>Resolution</td><td class="mono">300 DPI</td><td class="check">&#10003;</td></tr>
+        <tr><td>Dimensions</td><td class="mono">800 x 800 px</td><td class="check">&#10003;</td></tr>
+        <tr><td>File Size</td><td class="mono">&lt; 50 KB each (limit: 5 MB)</td><td class="check">&#10003;</td></tr>
+        <tr><td>Background</td><td class="mono">Pure white #FFFFFF</td><td class="check">&#10003;</td></tr>
+        <tr><td>Color Mode (Color)</td><td class="mono">sRGB</td><td class="check">&#10003;</td></tr>
+        <tr><td>Color Mode (B&amp;W)</td><td class="mono">Grayscale</td><td class="check">&#10003;</td></tr>
+        <tr><td>Watermarks / TM</td><td class="mono">None</td><td class="check">&#10003;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Naming Convention</h3>
+  <p>Format: <code>商标名_类别_颜色_日期.jpg</code></p>
+
+  <h3>USPTO Files</h3>
+  <div class="grid-2">
+    <div class="file-card">
+      <div class="logo-preview light"><img src="jpeg-uspto/Token360_42_Color_20260412.jpg" alt="Color mark" style="max-height:160px"></div>
+      <div class="name">Token360_42_Color_20260412.jpg</div>
+      <div class="specs">800x800 · 300 DPI · sRGB · 49 KB</div>
+    </div>
+    <div class="file-card">
+      <div class="logo-preview light"><img src="jpeg-uspto/Token360_42_BW_20260412.jpg" alt="BW mark" style="max-height:160px"></div>
+      <div class="name">Token360_42_BW_20260412.jpg</div>
+      <div class="specs">800x800 · 300 DPI · Grayscale · 28 KB</div>
+    </div>
+    <div class="file-card">
+      <div class="logo-preview light"><img src="jpeg-uspto/Token360_Horizontal_42_Color_20260412.jpg" alt="Color horizontal" style="max-height:160px"></div>
+      <div class="name">Token360_Horizontal_42_Color_20260412.jpg</div>
+      <div class="specs">800x800 · 300 DPI · sRGB · 37 KB</div>
+    </div>
+    <div class="file-card">
+      <div class="logo-preview light"><img src="jpeg-uspto/Token360_Horizontal_42_BW_20260412.jpg" alt="BW horizontal" style="max-height:160px"></div>
+      <div class="name">Token360_Horizontal_42_BW_20260412.jpg</div>
+      <div class="specs">800x800 · 300 DPI · Grayscale · 22 KB</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Token360 Logo Specification — Version 2.0 — April 2026</p>
+  <p style="margin-top:4px">Internal document · Not for external distribution</p>
+</footer>
+
+</main>
+</body>
+</html>
