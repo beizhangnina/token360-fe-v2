@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 80">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9633AF"/>
+      <stop offset="100%" stop-color="#6B1F90"/>
+    </linearGradient>
+  </defs>
+  <text x="250" y="56" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="56" font-weight="bold" letter-spacing="-1">
+    <tspan fill="#1A0826">Token</tspan><tspan fill="url(#grad)">360</tspan>
+  </text>
+</svg>
