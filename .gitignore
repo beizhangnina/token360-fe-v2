@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# archived / old branding (kept locally)
+Token360_Branding_Guidelines.html
+Token360_Branding_Guidelines.pdf
+/token360-logo-final/
+/token360-logo-final-v2/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
