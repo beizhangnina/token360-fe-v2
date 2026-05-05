@@ -46,6 +46,9 @@ export function Navbar() {
           <Link href="/explore" className="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
             Explore
           </Link>
+          <Link href="/partners" className="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+            Partners
+          </Link>
           <button className="flex items-center gap-1 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
             Resources <ChevronDown className="h-4 w-4" />
           </button>
