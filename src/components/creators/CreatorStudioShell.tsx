@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Film, Image as ImageIcon, Music } from "lucide-react";
 import { OutputPanel } from "./OutputPanel";
 import { PromptComposer } from "./PromptComposer";
@@ -17,6 +18,13 @@ import {
   type VideoParams,
 } from "@/lib/creators/studioData";
 import { mockGenerate, type MockResult } from "@/lib/creators/mockGenerate";
+import {
+  ANON_USE_LIMIT,
+  bumpAnonUses,
+  useAnonUses,
+  useCreatorAuth,
+} from "@/lib/creators/auth";
+import { creditCost } from "@/lib/creators/billing";
 
 const TABS: { id: StudioTab; label: string; Icon: typeof ImageIcon }[] = [
   { id: "image", label: "Image", Icon: ImageIcon },
@@ -28,7 +36,20 @@ function defaultModelFor(tab: StudioTab): string {
   return MODELS.find((m) => m.tab === tab)?.id ?? "";
 }
 
-export function CreatorStudioShell() {
+type Props = {
+  mode?: "anonymous" | "authenticated";
+  showTemplates?: boolean;
+};
+
+export function CreatorStudioShell({
+  mode = "anonymous",
+  showTemplates = true,
+}: Props) {
+  const router = useRouter();
+  const { session, consumeCredits } = useCreatorAuth();
+  const { uses: anonUses } = useAnonUses(mode === "anonymous");
+  const anonExhausted = mode === "anonymous" && anonUses >= ANON_USE_LIMIT;
+
   const [tab, setTab] = useState<StudioTab>("image");
   const [modelByTab, setModelByTab] = useState<Record<StudioTab, string>>({
     image: defaultModelFor("image"),
@@ -49,6 +70,10 @@ export function CreatorStudioShell() {
 
   const prompt = promptByTab[tab];
   const modelId = modelByTab[tab];
+  const count = tab === "image" ? imageParams.count : 1;
+  const cost = creditCost(tab, modelId, count);
+  const creditsRemaining = session?.creditsRemaining ?? 0;
+  const insufficientCredits = mode === "authenticated" && creditsRemaining < cost;
 
   const setPrompt = (s: string) => {
     setPromptByTab((p) => ({ ...p, [tab]: s }));
@@ -64,20 +89,40 @@ export function CreatorStudioShell() {
   };
 
   const generate = useCallback(async () => {
+    if (anonExhausted) {
+      router.push("/for-creators/sign-in");
+      return;
+    }
     if (!prompt.trim()) {
       setError("Add a prompt to generate.");
+      return;
+    }
+    if (mode === "authenticated" && creditsRemaining < cost) {
+      setError("Not enough credits — upgrade your plan or buy a credit pack.");
       return;
     }
     setError(null);
     setGenerating(true);
     try {
-      const count = tab === "image" ? imageParams.count : 1;
       const out = await mockGenerate({ tab, modelId, prompt, count });
       setResults(out);
+      if (mode === "anonymous") bumpAnonUses();
+      else consumeCredits(cost);
     } finally {
       setGenerating(false);
     }
-  }, [prompt, tab, modelId, imageParams.count]);
+  }, [
+    anonExhausted,
+    prompt,
+    mode,
+    creditsRemaining,
+    cost,
+    tab,
+    modelId,
+    count,
+    router,
+    consumeCredits,
+  ]);
 
   const applyTemplate = useCallback((t: Template) => {
     setTab(t.tab);
@@ -90,6 +135,24 @@ export function CreatorStudioShell() {
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, []);
+
+  // Action label for the Generate button.
+  let actionLabel = "Generate";
+  let actionHelper: string;
+  if (mode === "anonymous") {
+    if (anonExhausted) {
+      actionLabel = "Sign up to keep creating";
+      actionHelper = "Free previews used — sign up for 50 credits, no credit card required";
+    } else {
+      const remaining = ANON_USE_LIMIT - anonUses;
+      actionHelper = `${remaining} free preview${remaining === 1 ? "" : "s"} remaining · Outputs are watermarked`;
+    }
+  } else {
+    actionLabel = `Generate · ${cost} credit${cost === 1 ? "" : "s"}`;
+    actionHelper = insufficientCredits
+      ? `Need ${cost} credits — you have ${creditsRemaining}. Upgrade or buy more.`
+      : `${creditsRemaining.toLocaleString()} credits remaining`;
+  }
 
   return (
     <>
@@ -148,6 +211,9 @@ export function CreatorStudioShell() {
               generating={generating}
               error={error}
               onGenerate={generate}
+              actionLabel={actionLabel}
+              actionHelper={actionHelper}
+              actionDisabled={!anonExhausted && (insufficientCredits || prompt.trim().length === 0)}
             />
             <OutputPanel
               tab={tab}
@@ -158,12 +224,13 @@ export function CreatorStudioShell() {
               imageParams={imageParams}
               videoParams={videoParams}
               onRegenerate={generate}
+              watermark={mode === "anonymous"}
             />
           </div>
         </div>
       </section>
 
-      <TemplateInspiration onApply={applyTemplate} />
+      {showTemplates && <TemplateInspiration onApply={applyTemplate} />}
     </>
   );
 }

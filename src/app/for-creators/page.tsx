@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { CTASection } from "@/components/CTASection";
 import { CreatorHero } from "@/components/creators/CreatorHero";
 import { CreatorStudioShell } from "@/components/creators/CreatorStudioShell";
+import { SignedInBanner } from "@/components/creators/SignedInBanner";
 
 export const metadata: Metadata = {
   title: "For Creators · Token360",
@@ -15,9 +16,10 @@ export default function ForCreatorsPage() {
   return (
     <>
       <Navbar />
+      <SignedInBanner />
       <main>
         <CreatorHero />
-        <CreatorStudioShell />
+        <CreatorStudioShell mode="anonymous" />
         <CTASection />
       </main>
       <Footer />

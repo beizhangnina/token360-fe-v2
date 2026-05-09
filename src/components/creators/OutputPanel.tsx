@@ -28,6 +28,7 @@ type Props = {
   imageParams: ImageParams;
   videoParams: VideoParams;
   onRegenerate: () => void;
+  watermark?: boolean;
 };
 
 export function OutputPanel({
@@ -39,6 +40,7 @@ export function OutputPanel({
   imageParams,
   videoParams,
   onRegenerate,
+  watermark = false,
 }: Props) {
   const model = MODELS.find((m) => m.id === modelId);
   const aspectClass =
@@ -112,6 +114,7 @@ export function OutputPanel({
             aspectClass={aspectClass}
             prompt={prompt}
             onRegenerate={onRegenerate}
+            watermark={watermark}
           />
         ))}
       </div>
@@ -134,12 +137,14 @@ function ResultCard({
   aspectClass,
   prompt,
   onRegenerate,
+  watermark,
 }: {
   result: MockResult;
   tab: StudioTab;
   aspectClass: string;
   prompt: string;
   onRegenerate: () => void;
+  watermark: boolean;
 }) {
   const [copied, setCopied] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -168,6 +173,7 @@ function ResultCard({
             <Play className="h-3 w-3 fill-white" /> Preview clip
           </div>
         )}
+        {watermark && <WatermarkOverlay />}
       </div>
       <div className="flex items-center justify-between gap-2 border-t border-[var(--border-subtle)] px-3 py-2">
         <span className="truncate text-[11px] text-[var(--text-muted)]">
@@ -223,6 +229,31 @@ function IconAction(
     <button type="button" onClick={props.onClick} title={props.title} className={cls}>
       {props.children}
     </button>
+  );
+}
+
+function WatermarkOverlay() {
+  // Diagonal repeating watermark for anonymous previews. Sign-in lifts it.
+  return (
+    <div
+      className="pointer-events-none absolute inset-0 flex items-center justify-center"
+      aria-hidden="true"
+    >
+      <div
+        className="grid grid-cols-3 gap-x-10 gap-y-6 opacity-40"
+        style={{ transform: "rotate(-22deg) scale(1.2)" }}
+      >
+        {Array.from({ length: 12 }).map((_, i) => (
+          <span
+            key={i}
+            className="select-none whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.32em] text-white/85 drop-shadow"
+            style={{ textShadow: "0 1px 2px rgba(0,0,0,.4)" }}
+          >
+            Token360 · Preview
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
 

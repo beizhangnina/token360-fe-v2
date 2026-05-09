@@ -30,6 +30,9 @@ type Props = {
   generating: boolean;
   error: string | null;
   onGenerate: () => void;
+  actionLabel?: string;
+  actionHelper?: string;
+  actionDisabled?: boolean;
 };
 
 export function PromptComposer(props: Props) {
@@ -48,9 +51,16 @@ export function PromptComposer(props: Props) {
     generating,
     error,
     onGenerate,
+    actionLabel = "Generate",
+    actionHelper,
+    actionDisabled,
   } = props;
 
   const tabModels = MODELS.filter((m) => m.tab === tab);
+  const disabled =
+    actionDisabled !== undefined
+      ? generating || actionDisabled
+      : generating || prompt.trim().length === 0;
 
   return (
     <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-elevated)] p-5">
@@ -115,7 +125,7 @@ export function PromptComposer(props: Props) {
       <button
         type="button"
         onClick={onGenerate}
-        disabled={generating || prompt.trim().length === 0}
+        disabled={disabled}
         className="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-full text-sm font-semibold text-white transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
         style={{ background: "var(--brand-purple-500)" }}
       >
@@ -127,12 +137,12 @@ export function PromptComposer(props: Props) {
         ) : (
           <>
             <Wand2 className="h-4 w-4" />
-            Generate
+            {actionLabel}
           </>
         )}
       </button>
       <p className="mt-3 text-center text-[11px] text-[var(--text-muted)]">
-        Powered by Token360 API · No credits used in preview
+        {actionHelper ?? "Powered by Token360 API · No credits used in preview"}
       </p>
     </div>
   );
