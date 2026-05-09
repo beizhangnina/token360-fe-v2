@@ -46,6 +46,9 @@ export function Navbar() {
           <Link href="/explore" className="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
             Explore
           </Link>
+          <Link href="/for-creators" className="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+            For Creators
+          </Link>
           <Link href="/partners" className="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
             Partners
           </Link>
