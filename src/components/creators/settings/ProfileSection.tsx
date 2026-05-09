@@ -9,11 +9,14 @@ const inputCls =
 
 export function ProfileSection() {
   const { session } = useCreatorAuth();
-  const [name, setName] = useState(session?.name ?? "");
+  // Track only the user's edits as a draft. The displayed value falls back to
+  // the session name, so it stays in sync after the auth hook hydrates.
+  const [draft, setDraft] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
 
   if (!session) return null;
-  const initial = (name || session.name).charAt(0).toUpperCase();
+  const name = draft ?? session.name;
+  const initial = name.charAt(0).toUpperCase();
 
   return (
     <Section title="Profile" subtitle="How you appear inside the studio.">
@@ -30,7 +33,7 @@ export function ProfileSection() {
             <input
               value={name}
               onChange={(e) => {
-                setName(e.target.value);
+                setDraft(e.target.value);
                 setSaved(false);
               }}
               className={inputCls + " mt-1.5"}

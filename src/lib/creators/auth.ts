@@ -129,30 +129,29 @@ export function useCreatorAuth() {
   }, []);
 
   const consumeCredits = useCallback((amount: number) => {
-    setSession((prev) => {
-      if (!prev) return prev;
-      const next = {
-        ...prev,
-        creditsRemaining: Math.max(0, prev.creditsRemaining - amount),
-      };
-      writeSession(next);
-      return next;
-    });
+    // Do the side effect (localStorage + dispatchEvent) outside of any
+    // setState updater so we never fire `dispatchEvent` during another
+    // component's render.
+    const cur = readSession();
+    if (!cur) return;
+    const next = {
+      ...cur,
+      creditsRemaining: Math.max(0, cur.creditsRemaining - amount),
+    };
+    writeSession(next);
   }, []);
 
   const setPlan = useCallback((plan: CreatorPlan) => {
-    setSession((prev) => {
-      if (!prev) return prev;
-      const limit = PLAN_DEFAULT_CREDITS[plan];
-      const next: CreatorSession = {
-        ...prev,
-        plan,
-        creditsLimit: limit,
-        creditsRemaining: limit,
-      };
-      writeSession(next);
-      return next;
-    });
+    const cur = readSession();
+    if (!cur) return;
+    const limit = PLAN_DEFAULT_CREDITS[plan];
+    const next: CreatorSession = {
+      ...cur,
+      plan,
+      creditsLimit: limit,
+      creditsRemaining: limit,
+    };
+    writeSession(next);
   }, []);
 
   return { session, hydrated, signIn, signUp, signOut, consumeCredits, setPlan };
