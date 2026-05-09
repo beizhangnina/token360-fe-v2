@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>For Creators · Token360 — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* ===== Token360 v6 design tokens ===== */
+  :root {
+    --brand-purple-700:#7B22A0; --brand-purple-500:#9633AF; --brand-purple-400:#B44FD0;
+    --brand-purple-300:#D07AEB; --brand-gold-500:#C8963E;
+    --bg-primary:#FAF8F5; --bg-elevated:#fff; --bg-muted:#F0ECE6;
+    --text-primary:#1A1318; --text-secondary:#3D3540; --text-muted:#7A7080;
+    --border-subtle:#1A13181F; --border-strong:#1A13183D;
+    --color-focus-ring:#9633AF73; --shadow-accent:0 0 12px #9633AF4D;
+    --color-danger-text:#b91c1c;
+  }
+  .dark {
+    --bg-primary:#1E1B22; --bg-elevated:#262330; --bg-muted:#302C38;
+    --text-primary:#E0DED8; --text-secondary:#E0DED8A8; --text-muted:#E0DED860;
+    --border-subtle:#ffffff1f; --border-strong:#ffffff3d;
+    --color-focus-ring:#B44FD06B; --shadow-accent:0 0 16px #9633AF66;
+    --color-danger-text:#ffd2ce;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg-primary); color:var(--text-primary);
+    transition:background .25s,color .25s;
+  }
+  button{font-family:inherit; cursor:pointer; border:0; background:none; color:inherit}
+  textarea,input{font-family:inherit}
+  a{color:inherit; text-decoration:none}
+  .gradient-text{
+    background:linear-gradient(to right,var(--brand-purple-500),var(--brand-gold-500));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .container{max-width:1200px; margin:0 auto; padding:0 24px}
+
+  /* ===== Navbar ===== */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--bg-primary); border-bottom:1px solid var(--border-subtle);
+  }
+  .nav-row{display:flex; height:64px; align-items:center; justify-content:space-between}
+  .logo{display:flex; align-items:center; gap:8px; font-weight:700; letter-spacing:.5px}
+  .logo-mark{
+    width:32px; height:32px; border-radius:8px;
+    background:linear-gradient(135deg,var(--brand-purple-500),var(--brand-gold-500));
+    display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; font-weight:700;
+  }
+  .nav-links{display:none; align-items:center; gap:24px; font-size:14px; font-weight:500; color:var(--text-secondary)}
+  @media(min-width:768px){ .nav-links{display:flex} }
+  .nav-links a:hover{color:var(--text-primary)}
+  .nav-links .active{color:var(--text-primary); position:relative}
+  .nav-links .active::after{
+    content:""; position:absolute; left:0; right:0; bottom:-22px; height:2px;
+    background:var(--brand-purple-500); border-radius:2px;
+  }
+  .nav-right{display:flex; align-items:center; gap:12px}
+  .icon-btn{
+    width:36px; height:36px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+    color:var(--text-muted); transition:background .2s;
+  }
+  .icon-btn:hover{background:var(--bg-muted)}
+  .signin{font-size:14px; font-weight:600; color:var(--text-primary)}
+
+  /* ===== Hero ===== */
+  .hero{position:relative; padding:96px 0 48px; overflow:hidden}
+  .hero::before{
+    content:""; position:absolute; inset:0; opacity:.6; pointer-events:none;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(150,51,175,.18) 0%, transparent 55%),
+      radial-gradient(circle at 80% 30%, rgba(200,150,62,.12) 0%, transparent 55%);
+  }
+  .hero-inner{position:relative; display:flex; flex-direction:column; align-items:center; text-align:center}
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 14px; border-radius:999px;
+    border:1px solid var(--border-subtle); background:var(--bg-elevated);
+    font-size:12px; font-weight:500; color:var(--text-secondary);
+  }
+  .badge .dot{width:6px; height:6px; border-radius:999px; background:var(--brand-purple-500)}
+  .h1{
+    margin:24px 0 0; font-size:40px; line-height:1.1; letter-spacing:-.02em; font-weight:700;
+  }
+  @media(min-width:768px){ .h1{font-size:64px} }
+  .sub{
+    margin:20px auto 0; max-width:640px;
+    font-size:16px; line-height:1.6; color:var(--text-secondary);
+  }
+  @media(min-width:768px){ .sub{font-size:18px} }
+  .cta-row{margin-top:32px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center}
+  .btn-primary{
+    min-height:52px; padding:0 28px; border-radius:999px;
+    background:var(--brand-purple-500); color:#fff;
+    font-size:14px; font-weight:600;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s;
+  }
+  .btn-primary:hover{transform:scale(1.02)}
+  .btn-secondary{
+    min-height:52px; padding:0 28px; border-radius:999px;
+    border:1px solid var(--border-subtle); color:var(--text-primary);
+    font-size:14px; font-weight:600;
+    display:inline-flex; align-items:center;
+    transition:background .2s;
+  }
+  .btn-secondary:hover{background:var(--bg-muted)}
+
+  .showcase{
+    margin-top:56px; display:grid; gap:12px;
+    grid-template-columns:repeat(2,1fr);
+  }
+  @media(min-width:768px){ .showcase{grid-template-columns:repeat(5,1fr)} }
+  .showcase-card{
+    position:relative; aspect-ratio:3/4; border-radius:16px; overflow:hidden;
+    border:1px solid var(--border-subtle); background:var(--bg-muted);
+  }
+  .showcase-card img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .5s}
+  .showcase-card:hover img{transform:scale(1.05)}
+  .showcase-card::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.15) 40%, transparent);
+  }
+  .showcase-label{
+    position:absolute; bottom:10px; left:12px; right:12px;
+    z-index:1; color:rgba(255,255,255,.85); font-size:11px; font-weight:600;
+  }
+
+  /* ===== Studio ===== */
+  .studio{padding:48px 0}
+  .tabs{
+    display:inline-flex; align-items:center; gap:4px; padding:4px;
+    border-radius:999px; border:1px solid var(--border-subtle); background:var(--bg-elevated);
+  }
+  .tab{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 18px; border-radius:999px;
+    font-size:14px; font-weight:600; color:var(--text-secondary);
+    transition:color .15s,background .15s;
+  }
+  .tab svg{width:16px; height:16px}
+  .tab:hover{color:var(--text-primary)}
+  .tab.active{background:var(--brand-purple-500); color:#fff; box-shadow:var(--shadow-accent)}
+  .tab-desc{
+    margin:16px auto 0; max-width:560px; text-align:center;
+    font-size:14px; color:var(--text-secondary);
+  }
+
+  .studio-grid{margin-top:32px; display:grid; gap:20px}
+  @media(min-width:900px){ .studio-grid{grid-template-columns:420px 1fr} }
+
+  .panel{
+    border:1px solid var(--border-subtle); background:var(--bg-elevated);
+    border-radius:16px; padding:20px;
+  }
+  .panel-label{
+    font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--text-muted);
+  }
+
+  .pills{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+  .pill{
+    padding:6px 14px; border-radius:999px; font-size:12px; font-weight:500;
+    border:1px solid var(--border-subtle); background:var(--bg-primary); color:var(--text-secondary);
+    transition:all .15s;
+  }
+  .pill:hover{border-color:var(--border-strong); color:var(--text-primary)}
+  .pill.active{border-color:transparent; background:var(--brand-purple-500); color:#fff}
+  .pill.outline-active{
+    border-color:var(--brand-purple-500); background:rgba(150,51,175,.1); color:var(--brand-purple-500);
+  }
+
+  textarea.prompt{
+    width:100%; margin-top:8px; resize:none; min-height:118px;
+    padding:12px 16px; border-radius:8px;
+    border:1px solid var(--border-subtle); background:var(--bg-elevated);
+    font-size:14px; color:var(--text-primary); line-height:1.6;
+    outline:none; transition:border-color .15s,box-shadow .15s;
+  }
+  textarea.prompt::placeholder{color:var(--text-muted)}
+  textarea.prompt:focus{
+    border-color:var(--brand-purple-500); box-shadow:0 0 0 3px var(--color-focus-ring);
+  }
+  .prompt-row{display:flex; align-items:center; justify-content:space-between}
+  .char-count{font-size:11px; color:var(--text-muted)}
+
+  .params{margin-top:20px; display:flex; flex-direction:column; gap:16px}
+  .param-block{display:flex; flex-direction:column; gap:8px}
+  .stepper{
+    display:inline-flex; padding:4px;
+    border-radius:999px; border:1px solid var(--border-subtle); background:var(--bg-primary);
+  }
+  .stepper button{
+    width:36px; height:28px; border-radius:999px; font-size:12px; font-weight:600;
+    color:var(--text-secondary);
+  }
+  .stepper button.active{background:var(--brand-purple-500); color:#fff}
+  input[type=range]{width:100%; accent-color:var(--brand-purple-500)}
+
+  .err{margin-top:12px; font-size:12px; color:var(--color-danger-text)}
+  .generate{
+    margin-top:20px; width:100%; height:48px; border-radius:999px;
+    background:var(--brand-purple-500); color:#fff; font-size:14px; font-weight:600;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    transition:transform .15s;
+  }
+  .generate:hover:not(:disabled){transform:scale(1.01)}
+  .generate:disabled{opacity:.5; cursor:not-allowed}
+  .footnote{margin-top:12px; text-align:center; font-size:11px; color:var(--text-muted)}
+
+  /* Output panel */
+  .empty{
+    min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:40px;
+    border-radius:16px; border:1px dashed var(--border-strong); background:var(--bg-elevated);
+  }
+  .empty-icon{
+    width:48px; height:48px; border-radius:16px; background:var(--bg-muted);
+    display:flex; align-items:center; justify-content:center; color:var(--brand-purple-500);
+  }
+  .empty h3{margin:16px 0 0; font-size:18px; font-weight:600}
+  .empty p{margin:8px auto 0; max-width:360px; font-size:14px; color:var(--text-secondary)}
+
+  .output-head h3{margin:0; font-size:14px; font-weight:600}
+  .output-head p{margin:4px 0 0; font-size:12px; color:var(--text-muted)}
+  .output-grid{margin-top:16px; display:grid; gap:12px}
+  .output-grid.cols-2{grid-template-columns:1fr}
+  @media(min-width:600px){ .output-grid.cols-2{grid-template-columns:1fr 1fr} }
+  .result-card{
+    border-radius:16px; overflow:hidden;
+    border:1px solid var(--border-subtle); background:var(--bg-primary);
+  }
+  .result-media{position:relative; width:100%; background:var(--bg-muted); overflow:hidden}
+  .result-media.r1{aspect-ratio:1/1}
+  .result-media.r169{aspect-ratio:16/9}
+  .result-media.r916{aspect-ratio:9/16}
+  .result-media img{width:100%; height:100%; object-fit:cover; display:block}
+  .video-badge{
+    position:absolute; bottom:12px; left:12px;
+    padding:4px 10px; border-radius:999px;
+    background:rgba(0,0,0,.6); color:#fff; backdrop-filter:blur(4px);
+    font-size:10px; font-weight:600; display:inline-flex; gap:6px; align-items:center;
+  }
+  .result-foot{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding:8px 12px; border-top:1px solid var(--border-subtle);
+  }
+  .result-foot .meta{font-size:11px; color:var(--text-muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .result-actions{display:flex; gap:6px; flex-shrink:0}
+  .mini-btn{
+    width:28px; height:28px; border-radius:999px;
+    border:1px solid var(--border-subtle); background:var(--bg-elevated); color:var(--text-secondary);
+    display:inline-flex; align-items:center; justify-content:center; transition:color .15s,border-color .15s;
+  }
+  .mini-btn:hover{color:var(--text-primary); border-color:var(--border-strong)}
+
+  .skeleton{
+    position:absolute; inset:0;
+    background:linear-gradient(135deg, var(--bg-muted), var(--bg-elevated), var(--bg-muted));
+    animation:pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+
+  /* Audio waveform */
+  .wave-wrap{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, rgba(150,51,175,.18) 0%, rgba(200,150,62,.10) 100%);
+  }
+  .wave{display:flex; gap:3px; height:80px; align-items:center}
+  .wave span{display:block; width:3px; border-radius:999px; background:rgba(150,51,175,.7)}
+  .wave-btn{
+    position:absolute; bottom:12px; left:12px;
+    padding:6px 12px; border-radius:999px;
+    background:rgba(0,0,0,.6); color:#fff; backdrop-filter:blur(4px);
+    font-size:11px; font-weight:600; display:inline-flex; gap:6px; align-items:center;
+  }
+
+  /* ===== Templates ===== */
+  .templates{padding:32px 0 80px}
+  .templates h2{margin:0; text-align:center; font-size:32px; font-weight:700}
+  @media(min-width:768px){ .templates h2{font-size:40px} }
+  .templates-sub{margin:12px auto 0; max-width:520px; text-align:center; font-size:14px; color:var(--text-secondary)}
+  .template-grid{
+    margin-top:40px; display:grid; gap:16px;
+    grid-template-columns:1fr;
+  }
+  @media(min-width:640px){ .template-grid{grid-template-columns:repeat(2,1fr)} }
+  @media(min-width:1024px){ .template-grid{grid-template-columns:repeat(3,1fr)} }
+  .template{
+    text-align:left; padding:0; overflow:hidden;
+    border:1px solid var(--border-subtle); background:var(--bg-elevated); border-radius:16px;
+    display:flex; flex-direction:column;
+    transition:transform .2s,border-color .2s,box-shadow .2s;
+  }
+  .template:hover{transform:translateY(-2px); border-color:var(--border-strong); box-shadow:var(--shadow-accent)}
+  .template-thumb{position:relative; aspect-ratio:16/10; overflow:hidden; background:var(--bg-muted)}
+  .template-thumb img{width:100%; height:100%; object-fit:cover; transition:transform .5s}
+  .template:hover .template-thumb img{transform:scale(1.05)}
+  .template-tag{
+    position:absolute; top:12px; left:12px;
+    padding:4px 10px; border-radius:999px;
+    background:rgba(0,0,0,.6); color:#fff; backdrop-filter:blur(4px);
+    font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.08em;
+  }
+  .template-body{padding:16px; display:flex; flex-direction:column; gap:8px; flex:1}
+  .template-head{display:flex; justify-content:space-between; gap:12px}
+  .template-head h3{margin:0; font-size:14px; font-weight:600}
+  .template-cat{
+    flex-shrink:0; font-size:10px; font-weight:500;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted);
+  }
+  .template-prompt{
+    font-size:12px; line-height:1.55; color:var(--text-secondary);
+    display:-webkit-box; -webkit-line-clamp:2; line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .use-prompt{
+    display:inline-flex; align-items:center; gap:4px; margin-top:auto;
+    font-size:12px; font-weight:600; color:var(--brand-purple-500);
+  }
+
+  /* ===== CTA ===== */
+  .cta{padding:96px 0}
+  .cta-card{
+    position:relative; max-width:900px; margin:0 auto;
+    padding:64px 32px; text-align:center;
+    border:1px solid var(--border-subtle); background:var(--bg-elevated);
+    border-radius:24px; overflow:hidden;
+  }
+  .cta-card::after{
+    content:""; position:absolute; bottom:0; left:0; right:0; height:4px;
+    background:var(--brand-purple-500);
+  }
+  .cta-card h2{margin:0; font-size:36px; font-weight:700}
+  @media(min-width:768px){ .cta-card h2{font-size:56px} }
+  .cta-card p{margin:16px auto 0; max-width:560px; font-size:15px; color:var(--text-secondary)}
+  .cta-card .btn-primary{margin-top:32px}
+
+  footer{
+    padding:32px 0; border-top:1px solid var(--border-subtle);
+    text-align:center; font-size:12px; color:var(--text-muted);
+  }
+
+  .preview-banner{
+    position:fixed; top:12px; right:12px; z-index:60;
+    padding:6px 12px; border-radius:999px;
+    background:var(--bg-elevated); border:1px solid var(--border-subtle);
+    font-size:11px; font-weight:600; color:var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-banner">Static preview · for design review</div>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="nav">
+  <div class="container nav-row">
+    <a href="#" class="logo">
+      <span class="logo-mark">T</span>
+      <span style="font-size:16px">Token360</span>
+    </a>
+    <div class="nav-links">
+      <a href="#">Explore</a>
+      <a href="#" class="active">For Creators</a>
+      <a href="#">Partners</a>
+      <a href="#">Resources</a>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">
+        <svg id="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <a href="#" class="signin">Sign In</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--brand-purple-500)" stroke="var(--brand-purple-500)" stroke-width="2"><path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/></svg>
+      For Creators · Studio · Beta
+    </div>
+    <h1 class="h1">Create. <span class="gradient-text">Don&rsquo;t configure.</span></h1>
+    <p class="sub">Type a prompt. Pick a model. Get a polished image, video, or voice clip in seconds — powered by the same Token360 API your favorite apps run on.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="#studio">Start Creating
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn-secondary" href="#templates">See Examples</a>
+    </div>
+
+    <div class="showcase">
+      <div class="showcase-card"><img src="public/images/models/nano-banana.webp" alt=""><span class="showcase-label">Image · Nano Banana 2</span></div>
+      <div class="showcase-card"><img src="public/images/models/wan26.webp" alt=""><span class="showcase-label">Video · Wan 2.6</span></div>
+      <div class="showcase-card"><img src="public/images/models/seedream.webp" alt=""><span class="showcase-label">Image · Seedream 4.5</span></div>
+      <div class="showcase-card"><img src="public/images/models/kling.webp" alt=""><span class="showcase-label">Video · Kling V3 Pro</span></div>
+      <div class="showcase-card"><img src="public/images/models/infinitetalk.webp" alt=""><span class="showcase-label">Audio · InfiniteTalk</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STUDIO ===================== -->
+<section id="studio" class="studio" style="scroll-margin-top:80px">
+  <div class="container">
+    <div style="display:flex; flex-direction:column; align-items:center">
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-tab="image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          Image
+        </button>
+        <button class="tab" data-tab="video">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></svg>
+          Video
+        </button>
+        <button class="tab" data-tab="audio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          Audio
+        </button>
+      </div>
+      <p class="tab-desc" id="tab-desc">Generate stills for products, characters, or scenes. Output is square or widescreen.</p>
+    </div>
+
+    <div class="studio-grid">
+      <!-- Composer -->
+      <div class="panel" id="composer"></div>
+
+      <!-- Output -->
+      <div id="output">
+        <div class="empty">
+          <div class="empty-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/></svg>
+          </div>
+          <h3>Your generations will appear here</h3>
+          <p>Type a prompt on the left, or pick a template below to pre-fill the studio.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEMPLATES ===================== -->
+<section id="templates" class="templates">
+  <div class="container">
+    <h2>Start from a template</h2>
+    <p class="templates-sub">Curated prompts across image, video, and audio. One click to load into the studio.</p>
+    <div class="template-grid" id="template-grid"></div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta">
+  <div class="cta-card">
+    <h2>Build Once. Scale Worldwide.</h2>
+    <p>From model orchestration to payments and compliance, Token360 gives your team one foundation to ship faster.</p>
+    <a href="#" class="btn-primary">Get an API Key
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© Token360 · For Creators preview · static mockup</div>
+</footer>
+
+<script>
+  // ====== Theme toggle ======
+  const root = document.documentElement;
+  const moon = document.getElementById('icon-moon');
+  const sun  = document.getElementById('icon-sun');
+  const themeBtn = document.getElementById('theme-toggle');
+  function setTheme(dark){
+    root.classList.toggle('dark', dark);
+    moon.style.display = dark ? 'none' : 'block';
+    sun.style.display  = dark ? 'block' : 'none';
+  }
+  themeBtn.addEventListener('click', () => setTheme(!root.classList.contains('dark')));
+
+  // ====== Data ======
+  const MODELS = {
+    image: [
+      {id:'nano-banana-2', name:'Nano Banana 2', vendor:'Token360', blurb:'Fast text-to-image, crisp typography'},
+      {id:'seedream-4-5',  name:'Seedream 4.5',  vendor:'Bytedance', blurb:'Edit & remix with natural language'},
+      {id:'qwen-image-2',  name:'Qwen Image 2',  vendor:'Alibaba',   blurb:'Bilingual prompts, photoreal & illustration'},
+    ],
+    video: [
+      {id:'wan-2-6',       name:'Wan 2.6',        vendor:'Alibaba',  blurb:'Image-to-video with strong motion'},
+      {id:'kling-v3-pro',  name:'Kling V3 Pro',   vendor:'Kuaishou', blurb:'Cinematic motion, camera-aware'},
+      {id:'sora-class',    name:'Sora-class',     vendor:'OpenAI',   blurb:'Long-form coherent video'},
+    ],
+    audio: [
+      {id:'infinitetalk',  name:'InfiniteTalk',   vendor:'Token360', blurb:'Lip-synced talking-head narration'},
+      {id:'audio-studio',  name:'Audio Studio',   vendor:'Token360', blurb:'Voice clips, narration & SFX'},
+    ],
+  };
+  const PLACEHOLDERS = {
+    image:'A cinematic close-up of a vintage espresso machine on a marble counter, warm morning light…',
+    video:'A 4-second clip of neon raindrops falling on a Tokyo street, slow camera dolly-in…',
+    audio:"A warm narrator voice saying: 'Token360 brings the world's best AI to one place.'",
+  };
+  const TAB_DESC = {
+    image:'Generate stills for products, characters, or scenes. Output is square or widescreen.',
+    video:'Turn a prompt into a short cinematic clip. Tune duration, resolution, and motion.',
+    audio:'Create voiceovers, narration, or talking-head audio in EN, 中文, or ES.',
+  };
+  const SAMPLE = {
+    image:['public/images/models/nano-banana.webp','public/images/models/seedream.webp','public/images/models/qwen.webp','public/images/groups/flux.jpg','public/images/groups/seedream.jpg','public/images/groups/qwen.jpg'],
+    video:['public/images/models/wan26.webp','public/images/models/kling.webp','public/images/models/sora.webp','public/images/models/wan22.webp','public/images/groups/wan26.jpg','public/images/groups/kling.jpg'],
+    audio:['public/images/models/infinitetalk.webp','public/images/groups/audio.jpg'],
+  };
+  const TEMPLATES = [
+    {id:'tpl-product',     title:'Cinematic product shot', tab:'image', modelId:'nano-banana-2', prompt:'Cinematic product photo of a matte-black wireless headphone on a glossy obsidian surface, rim light, soft purple haze, ultra-detailed, 50mm lens', thumb:'public/images/groups/seedream.jpg', category:'Product'},
+    {id:'tpl-anime',       title:'Anime portrait',         tab:'image', modelId:'seedream-4-5',  prompt:'Anime portrait of a young inventor with goggles, golden-hour lighting, painterly background, Studio Ghibli inspired', thumb:'public/images/groups/qwen.jpg', category:'Character'},
+    {id:'tpl-architecture',title:'Brutalist architecture', tab:'image', modelId:'qwen-image-2',  prompt:'Wide-angle architectural photo of a brutalist concrete museum at dusk, dramatic shadows, atmospheric fog, ultra-detailed', thumb:'public/images/groups/flux.jpg', category:'Architecture'},
+    {id:'tpl-talking',     title:'Talking-head explainer', tab:'video', modelId:'kling-v3-pro',  prompt:'A friendly tech reviewer in a neutral studio background explaining a product to camera, subtle hand gestures, 4-second loop', thumb:'public/images/groups/kling.jpg', category:'Marketing'},
+    {id:'tpl-product-loop',title:'Product 360° loop',      tab:'video', modelId:'wan-2-6',       prompt:'A luxury watch slowly rotating on a black turntable, studio lighting, reflective surface, seamless 8-second loop', thumb:'public/images/groups/wan26.jpg', category:'Product'},
+    {id:'tpl-cityscape',   title:'Cyberpunk cityscape',    tab:'video', modelId:'sora-class',    prompt:'Aerial flyover of a rain-soaked cyberpunk city at night, neon signs reflected in puddles, slow camera push-in', thumb:'public/images/models/sora.webp', category:'Scenic'},
+    {id:'tpl-narrator',    title:'Brand narrator voice',   tab:'audio', modelId:'audio-studio',  prompt:"A confident, warm male narrator says: 'When ideas move at the speed of thought, you ship faster — Token360.'", thumb:'public/images/groups/audio.jpg', category:'Voiceover'},
+    {id:'tpl-avatar',      title:'Lip-synced avatar',      tab:'audio', modelId:'infinitetalk',  prompt:"An English-speaking avatar reads a 30-second product intro about Token360's unified AI platform, friendly tone", thumb:'public/images/models/infinitetalk.webp', category:'Avatar'},
+    {id:'tpl-podcast',     title:'Podcast intro bumper',   tab:'audio', modelId:'audio-studio',  prompt:"A 10-second upbeat podcast intro, female host says: 'Welcome back to The Build Loop — where AI meets craft.'", thumb:'public/images/groups/audio.jpg', category:'Podcast'},
+  ];
+
+  // ====== State ======
+  const state = {
+    tab:'image',
+    promptByTab:{image:'',video:'',audio:''},
+    modelByTab:{image:'nano-banana-2', video:'wan-2-6', audio:'infinitetalk'},
+    image:{aspect:'1:1', style:'Photoreal', count:2},
+    video:{duration:'4s', resolution:'720p', motion:3},
+    audio:{voice:'Narrator', language:'EN', duration:'30s'},
+    generating:false, results:[], error:null,
+  };
+
+  // ====== Helpers ======
+  const $ = sel => document.querySelector(sel);
+  function hash(s){let h=0; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))|0; return Math.abs(h)}
+  function aspectClass(a){return a==='1:1'?'r1':a==='9:16'?'r916':'r169'}
+
+  // ====== Composer render ======
+  function pillRow(label, options, currentValue, onPick, variant){
+    const cls = variant==='outline'?'pill outline-active':'pill active';
+    return `
+      <div class="param-block">
+        <span class="panel-label">${label}</span>
+        <div class="pills" data-row="${label}">
+          ${options.map(o => `<button type="button" class="pill ${o===currentValue?(variant==='outline'?'outline-active':'active'):''}" data-val="${o}">${o}</button>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  function renderComposer(){
+    const tab = state.tab;
+    const prompt = state.promptByTab[tab];
+    const modelList = MODELS[tab];
+    const modelId = state.modelByTab[tab];
+
+    let paramsHtml = '';
+    if (tab === 'image') {
+      paramsHtml = `
+        ${pillRow('Aspect ratio', ['1:1','16:9','9:16'], state.image.aspect, null, 'outline')}
+        ${pillRow('Style', ['Photoreal','Illustration','3D'], state.image.style, null, 'outline')}
+        <div class="param-block">
+          <span class="panel-label">Outputs</span>
+          <div class="stepper" id="count-stepper">
+            ${[1,2,3,4].map(n => `<button class="${n===state.image.count?'active':''}" data-count="${n}">${n}</button>`).join('')}
+          </div>
+        </div>`;
+    } else if (tab === 'video') {
+      paramsHtml = `
+        ${pillRow('Duration', ['4s','8s','12s'], state.video.duration, null, 'outline')}
+        ${pillRow('Resolution', ['720p','1080p'], state.video.resolution, null, 'outline')}
+        <div class="param-block">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <span class="panel-label">Motion intensity</span>
+            <span class="char-count">${state.video.motion} / 5</span>
+          </div>
+          <input type="range" min="1" max="5" value="${state.video.motion}" id="motion-slider"/>
+        </div>`;
+    } else {
+      paramsHtml = `
+        ${pillRow('Voice', ['Narrator','Casual','Anchor'], state.audio.voice, null, 'outline')}
+        ${pillRow('Language', ['EN','中文','ES'], state.audio.language, null, 'outline')}
+        ${pillRow('Duration', ['10s','30s','60s'], state.audio.duration, null, 'outline')}`;
+    }
+
+    $('#composer').innerHTML = `
+      <span class="panel-label">Model</span>
+      <div class="pills" id="model-pills">
+        ${modelList.map(m => `<button class="pill ${m.id===modelId?'active':''}" data-model="${m.id}" title="${m.blurb}">${m.name}</button>`).join('')}
+      </div>
+      <div style="margin-top:20px">
+        <div class="prompt-row">
+          <span class="panel-label">Prompt</span>
+          <span class="char-count"><span id="char-now">${prompt.length}</span> / 500</span>
+        </div>
+        <textarea class="prompt" id="prompt" rows="5" maxlength="500" placeholder="${PLACEHOLDERS[tab]}">${prompt}</textarea>
+      </div>
+      <div class="params">${paramsHtml}</div>
+      ${state.error?`<p class="err">${state.error}</p>`:''}
+      <button class="generate" id="generate-btn" ${state.generating||prompt.trim().length===0?'disabled':''}>
+        ${state.generating
+          ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.2-8.55"/></svg> Generating…`
+          : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8l1.4 1.4M15 9l-9 9-3 1 1-3 9-9zM17.8 6.2l1.4-1.4"/></svg> Generate`}
+      </button>
+      <p class="footnote">Powered by Token360 API · No credits used in preview</p>
+    `;
+
+    // Wire up composer events
+    $('#composer').querySelectorAll('[data-model]').forEach(btn => {
+      btn.addEventListener('click', () => { state.modelByTab[state.tab] = btn.dataset.model; renderComposer(); });
+    });
+    const ta = $('#prompt');
+    ta.addEventListener('input', e => {
+      state.promptByTab[state.tab] = e.target.value.slice(0,500);
+      $('#char-now').textContent = state.promptByTab[state.tab].length;
+      $('#generate-btn').disabled = state.generating || state.promptByTab[state.tab].trim().length===0;
+      if (state.error){ state.error = null; renderComposer(); ta.focus(); }
+    });
+    if (tab === 'image') {
+      $('#count-stepper').querySelectorAll('button').forEach(b => b.addEventListener('click', () => { state.image.count = +b.dataset.count; renderComposer(); }));
+      bindPills('Aspect ratio', v => state.image.aspect = v);
+      bindPills('Style',        v => state.image.style  = v);
+    } else if (tab === 'video') {
+      $('#motion-slider').addEventListener('input', e => { state.video.motion = +e.target.value; renderComposer(); });
+      bindPills('Duration',   v => state.video.duration   = v);
+      bindPills('Resolution', v => state.video.resolution = v);
+    } else {
+      bindPills('Voice',    v => state.audio.voice    = v);
+      bindPills('Language', v => state.audio.language = v);
+      bindPills('Duration', v => state.audio.duration = v);
+    }
+    $('#generate-btn').addEventListener('click', generate);
+  }
+  function bindPills(rowLabel, setter){
+    document.querySelectorAll(`[data-row="${rowLabel}"] .pill`).forEach(p => {
+      p.addEventListener('click', () => { setter(p.dataset.val); renderComposer(); });
+    });
+  }
+
+  // ====== Output render ======
+  function renderOutput(){
+    const out = $('#output');
+    const tab = state.tab;
+    const modelId = state.modelByTab[tab];
+    const model = MODELS[tab].find(m => m.id === modelId);
+
+    if (state.generating) {
+      const skel = tab==='image' ? state.image.count : 1;
+      const ar = tab==='image' ? aspectClass(state.image.aspect) : 'r169';
+      let cards = '';
+      for (let i=0;i<skel;i++) cards += `<div class="result-card"><div class="result-media ${ar}"><div class="skeleton"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brand-purple-500)" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.2-8.55"/></svg></div></div></div>`;
+      out.innerHTML = `<div class="panel">
+        <div class="output-head"><h3>Generating with ${model.name}…</h3><p>Mock latency 1.8–2.4s · placeholder assets shown for demo</p></div>
+        <div class="output-grid ${skel>1?'cols-2':''}">${cards}</div>
+      </div>`;
+      return;
+    }
+
+    if (state.results.length === 0) {
+      out.innerHTML = `<div class="empty">
+        <div class="empty-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/></svg></div>
+        <h3>Your generations will appear here</h3>
+        <p>Type a prompt on the left, or pick a template below to pre-fill the studio.</p>
+      </div>`;
+      return;
+    }
+
+    const ar = tab==='image' ? aspectClass(state.image.aspect) : 'r169';
+    const cards = state.results.map((r, idx) => {
+      let media;
+      if (tab === 'audio') {
+        const bars = Array.from({length:48},(_,i)=>`<span style="height:${18+((i*37)%60)}%"></span>`).join('');
+        media = `<div class="result-media r169"><div class="wave-wrap"><div class="wave">${bars}</div><button class="wave-btn">▶ 0:00 / 0:30</button></div></div>`;
+      } else {
+        const badge = tab==='video' ? `<span class="video-badge">▶ Preview clip</span>` : '';
+        media = `<div class="result-media ${ar}"><img src="${r.url}" alt=""/>${badge}</div>`;
+      }
+      return `<div class="result-card">${media}
+        <div class="result-foot">
+          <span class="meta">${model.vendor} · ${model.name}</span>
+          <div class="result-actions">
+            <button class="mini-btn" data-copy="${idx}" title="Copy prompt"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+            <a class="mini-btn" href="${r.url}" download title="Download"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a>
+            <button class="mini-btn" data-regen="1" title="Re-generate"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></button>
+          </div>
+        </div></div>`;
+    }).join('');
+
+    out.innerHTML = `<div class="panel">
+      <div class="output-head"><h3>${state.results.length} result${state.results.length>1?'s':''} from ${model.name}</h3><p>Mock outputs · same prompt yields the same preview</p></div>
+      <div class="output-grid ${state.results.length>1?'cols-2':''}">${cards}</div>
+    </div>`;
+
+    out.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(state.promptByTab[state.tab]); b.style.color = 'var(--brand-purple-500)'; setTimeout(()=>b.style.color='', 800); } catch {}
+    }));
+    out.querySelectorAll('[data-regen]').forEach(b => b.addEventListener('click', generate));
+  }
+
+  // ====== Generate (mock) ======
+  async function generate(){
+    const tab = state.tab;
+    const prompt = state.promptByTab[tab];
+    if (!prompt.trim()) { state.error = 'Add a prompt to generate.'; renderComposer(); return; }
+    state.error = null; state.generating = true; renderComposer(); renderOutput();
+    await new Promise(r => setTimeout(r, 1800 + Math.random()*600));
+    const pool = SAMPLE[tab];
+    const base = hash(prompt + state.modelByTab[tab]);
+    const n = tab==='image' ? state.image.count : 1;
+    state.results = Array.from({length:n}, (_,i) => ({
+      id:`${state.modelByTab[tab]}-${base}-${i}`,
+      url:pool[(base+i) % pool.length],
+    }));
+    state.generating = false;
+    renderComposer(); renderOutput();
+  }
+
+  // ====== Tabs ======
+  document.querySelectorAll('.tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      state.tab = t.dataset.tab;
+      state.results = []; state.error = null;
+      $('#tab-desc').textContent = TAB_DESC[state.tab];
+      renderComposer(); renderOutput();
+    });
+  });
+
+  // ====== Templates ======
+  function renderTemplates(){
+    $('#template-grid').innerHTML = TEMPLATES.map(t => `
+      <button class="template" data-tpl="${t.id}">
+        <div class="template-thumb"><img src="${t.thumb}" alt=""/><span class="template-tag">${t.tab}</span></div>
+        <div class="template-body">
+          <div class="template-head">
+            <h3>${t.title}</h3>
+            <span class="template-cat">${t.category}</span>
+          </div>
+          <p class="template-prompt">${t.prompt}</p>
+          <span class="use-prompt">Use this prompt
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </button>`).join('');
+    document.querySelectorAll('[data-tpl]').forEach(b => b.addEventListener('click', () => {
+      const t = TEMPLATES.find(x => x.id === b.dataset.tpl);
+      state.tab = t.tab;
+      state.modelByTab[t.tab] = t.modelId;
+      state.promptByTab[t.tab] = t.prompt;
+      state.results = []; state.error = null;
+      document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x.dataset.tab===t.tab));
+      $('#tab-desc').textContent = TAB_DESC[t.tab];
+      renderComposer(); renderOutput();
+      document.getElementById('studio').scrollIntoView({behavior:'smooth', block:'start'});
+    }));
+  }
+
+  // Initial render
+  renderComposer();
+  renderOutput();
+  renderTemplates();
+</script>
+
+</body>
+</html>
