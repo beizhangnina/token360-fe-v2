@@ -6,6 +6,12 @@ const navLinks = [
   { label: "Partners", href: "/partners" },
 ];
 
+const creatorsLinks = [
+  { label: "For Creators", href: "/for-creators" },
+  { label: "Pricing", href: "/for-creators/pricing" },
+  { label: "Sign in", href: "/for-creators/sign-in" },
+];
+
 const resourceLinks = [
   { label: "About Us", href: "/resources" },
   { label: "Doc", href: "/docs" },
@@ -25,6 +31,20 @@ export function Footer() {
           <ul className="flex min-w-[200px] flex-col gap-4">
             <li className="text-2xl font-medium text-[var(--text-primary)]">Navigation</li>
             {navLinks.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className="text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <ul className="flex min-w-[200px] flex-col gap-4">
+            <li className="text-2xl font-medium text-[var(--text-primary)]">Creators</li>
+            {creatorsLinks.map((link) => (
               <li key={link.label}>
                 <Link
                   href={link.href}
