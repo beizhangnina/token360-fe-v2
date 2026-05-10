@@ -10,74 +10,37 @@ export type StudioModel = {
 };
 
 export const MODELS: StudioModel[] = [
-  // Image
   {
-    id: "nano-banana-2",
-    name: "Nano Banana 2",
-    vendor: "Token360",
-    tab: "image",
-    thumb: "/images/models/nano-banana.webp",
-    blurb: "Fast text-to-image, crisp typography",
-  },
-  {
-    id: "seedream-4-5",
-    name: "Seedream 4.5",
-    vendor: "Bytedance",
-    tab: "image",
-    thumb: "/images/models/seedream.webp",
-    blurb: "Edit & remix with natural language",
-  },
-  {
-    id: "qwen-image-2",
-    name: "Qwen Image 2 Pro",
-    vendor: "Alibaba",
-    tab: "image",
-    thumb: "/images/models/qwen.webp",
-    blurb: "Bilingual prompts, photoreal & illustration",
-  },
-
-  // Video
-  {
-    id: "wan-2-6",
-    name: "Wan 2.6",
-    vendor: "Alibaba",
+    id: "seedance-2-0",
+    name: "Seedance 2.0",
+    vendor: "ByteDance",
     tab: "video",
-    thumb: "/images/models/wan26.webp",
-    blurb: "Image-to-video with strong motion",
+    thumb: "/images/models/wan22.webp",
+    blurb: "Native multimodal audio + video, cinematic camera planning",
   },
   {
-    id: "kling-v3-pro",
-    name: "Kling V3 Pro",
+    id: "veo-3-1",
+    name: "Veo 3.1",
+    vendor: "Google",
+    tab: "video",
+    thumb: "/images/models/sora.webp",
+    blurb: "Long-form coherence and physical realism",
+  },
+  {
+    id: "kling-2-5-turbo",
+    name: "Kling 2.5 Turbo",
     vendor: "Kuaishou",
     tab: "video",
     thumb: "/images/models/kling.webp",
-    blurb: "Cinematic motion, camera-aware",
+    blurb: "Character consistency, anime stylization",
   },
   {
-    id: "sora-class",
-    name: "Sora-class",
-    vendor: "OpenAI",
+    id: "hailuo-2-3",
+    name: "Hailuo 2.3",
+    vendor: "MiniMax",
     tab: "video",
-    thumb: "/images/models/sora.webp",
-    blurb: "Long-form coherent video",
-  },
-
-  // Audio
-  {
-    id: "infinitetalk",
-    name: "InfiniteTalk",
-    vendor: "Token360",
-    tab: "audio",
-    thumb: "/images/models/infinitetalk.webp",
-    blurb: "Lip-synced talking-head narration",
-  },
-  {
-    id: "audio-studio",
-    name: "Audio Studio",
-    vendor: "Token360",
-    tab: "audio",
-    thumb: "/images/groups/audio.jpg",
-    blurb: "Voice clips, narration & SFX",
+    thumb: "/images/models/wan26.webp",
+    blurb: "Rapid iteration, fast drafts at speed",
   },
 ];
 
@@ -159,40 +122,10 @@ export type Template = {
 
 export const TEMPLATES: Template[] = [
   {
-    id: "tpl-product",
-    title: "Cinematic product shot",
-    tab: "image",
-    modelId: "nano-banana-2",
-    prompt:
-      "Cinematic product photo of a matte-black wireless headphone on a glossy obsidian surface, rim light, soft purple haze, ultra-detailed, 50mm lens",
-    thumb: "/images/groups/seedream.jpg",
-    category: "Product",
-  },
-  {
-    id: "tpl-anime",
-    title: "Anime portrait",
-    tab: "image",
-    modelId: "seedream-4-5",
-    prompt:
-      "Anime portrait of a young inventor with goggles, golden-hour lighting, painterly background, Studio Ghibli inspired",
-    thumb: "/images/groups/qwen.jpg",
-    category: "Character",
-  },
-  {
-    id: "tpl-architecture",
-    title: "Brutalist architecture",
-    tab: "image",
-    modelId: "qwen-image-2",
-    prompt:
-      "Wide-angle architectural photo of a brutalist concrete museum at dusk, dramatic shadows, atmospheric fog, ultra-detailed",
-    thumb: "/images/groups/flux.jpg",
-    category: "Architecture",
-  },
-  {
     id: "tpl-talking-head",
     title: "Talking-head explainer",
     tab: "video",
-    modelId: "kling-v3-pro",
+    modelId: "kling-2-5-turbo",
     prompt:
       "A friendly tech reviewer in a neutral studio background explaining a product to camera, subtle hand gestures, 4-second loop",
     thumb: "/images/groups/kling.jpg",
@@ -202,7 +135,7 @@ export const TEMPLATES: Template[] = [
     id: "tpl-product-loop",
     title: "Product 360° loop",
     tab: "video",
-    modelId: "wan-2-6",
+    modelId: "seedance-2-0",
     prompt:
       "A luxury watch slowly rotating on a black turntable, studio lighting, reflective surface, seamless 8-second loop",
     thumb: "/images/groups/wan26.jpg",
@@ -212,40 +145,10 @@ export const TEMPLATES: Template[] = [
     id: "tpl-cityscape",
     title: "Cyberpunk cityscape",
     tab: "video",
-    modelId: "sora-class",
+    modelId: "veo-3-1",
     prompt:
       "Aerial flyover of a rain-soaked cyberpunk city at night, neon signs reflected in puddles, dense traffic, slow camera push-in",
     thumb: "/images/models/sora.webp",
     category: "Scenic",
-  },
-  {
-    id: "tpl-narrator",
-    title: "Brand narrator voice",
-    tab: "audio",
-    modelId: "audio-studio",
-    prompt:
-      "A confident, warm male narrator says: 'When ideas move at the speed of thought, you ship faster — Token360.'",
-    thumb: "/images/groups/audio.jpg",
-    category: "Voiceover",
-  },
-  {
-    id: "tpl-talking-avatar",
-    title: "Lip-synced avatar",
-    tab: "audio",
-    modelId: "infinitetalk",
-    prompt:
-      "An English-speaking avatar reads a 30-second product intro about Token360's unified AI platform, friendly tone",
-    thumb: "/images/models/infinitetalk.webp",
-    category: "Avatar",
-  },
-  {
-    id: "tpl-podcast",
-    title: "Podcast intro bumper",
-    tab: "audio",
-    modelId: "audio-studio",
-    prompt:
-      "A 10-second upbeat podcast intro, female host says: 'Welcome back to The Build Loop — where AI meets craft.'",
-    thumb: "/images/groups/audio.jpg",
-    category: "Podcast",
   },
 ];

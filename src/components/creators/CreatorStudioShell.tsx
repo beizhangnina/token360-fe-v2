@@ -2,7 +2,6 @@
 
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Film, Image as ImageIcon, Music } from "lucide-react";
 import { OutputPanel } from "./OutputPanel";
 import { PromptComposer } from "./PromptComposer";
 import { TemplateInspiration } from "./TemplateInspiration";
@@ -26,12 +25,6 @@ import {
 } from "@/lib/creators/auth";
 import { creditCost } from "@/lib/creators/billing";
 
-const TABS: { id: StudioTab; label: string; Icon: typeof ImageIcon }[] = [
-  { id: "image", label: "Image", Icon: ImageIcon },
-  { id: "video", label: "Video", Icon: Film },
-  { id: "audio", label: "Audio", Icon: Music },
-];
-
 function defaultModelFor(tab: StudioTab): string {
   return MODELS.find((m) => m.tab === tab)?.id ?? "";
 }
@@ -50,7 +43,7 @@ export function CreatorStudioShell({
   const { uses: anonUses } = useAnonUses(mode === "anonymous");
   const anonExhausted = mode === "anonymous" && anonUses >= ANON_USE_LIMIT;
 
-  const [tab, setTab] = useState<StudioTab>("image");
+  const [tab, setTab] = useState<StudioTab>("video");
   const [modelByTab, setModelByTab] = useState<Record<StudioTab, string>>({
     image: defaultModelFor("image"),
     video: defaultModelFor("video"),
@@ -80,13 +73,6 @@ export function CreatorStudioShell({
     if (error) setError(null);
   };
   const setModel = (id: string) => setModelByTab((m) => ({ ...m, [tab]: id }));
-
-  const switchTab = (next: StudioTab) => {
-    if (next === tab) return;
-    setTab(next);
-    setResults([]);
-    setError(null);
-  };
 
   const generate = useCallback(async () => {
     if (anonExhausted) {
@@ -137,7 +123,7 @@ export function CreatorStudioShell({
   }, []);
 
   // Action label for the Generate button.
-  let actionLabel = "Generate";
+  let actionLabel = "Roll the camera";
   let actionHelper: string;
   if (mode === "anonymous") {
     if (anonExhausted) {
@@ -148,7 +134,7 @@ export function CreatorStudioShell({
       actionHelper = `${remaining} free preview${remaining === 1 ? "" : "s"} remaining · Outputs are watermarked`;
     }
   } else {
-    actionLabel = `Generate · ${cost} credit${cost === 1 ? "" : "s"}`;
+    actionLabel = `Roll the camera · ${cost} credit${cost === 1 ? "" : "s"}`;
     actionHelper = insufficientCredits
       ? `Need ${cost} credits — you have ${creditsRemaining}. Upgrade or buy more.`
       : `${creditsRemaining.toLocaleString()} credits remaining`;
@@ -161,36 +147,13 @@ export function CreatorStudioShell({
         className="relative z-10 scroll-mt-20 bg-[var(--bg-primary)] px-6 py-12"
       >
         <div className="mx-auto max-w-[1200px]">
-          {/* Tabs */}
-          <div className="flex flex-col items-center">
-            <div className="inline-flex items-center gap-1 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-elevated)] p-1">
-              {TABS.map(({ id, label, Icon }) => {
-                const active = id === tab;
-                return (
-                  <button
-                    key={id}
-                    type="button"
-                    onClick={() => switchTab(id)}
-                    className={
-                      "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors " +
-                      (active
-                        ? "bg-[var(--brand-purple-500)] text-white shadow-[var(--shadow-accent)]"
-                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]")
-                    }
-                  >
-                    <Icon className="h-4 w-4" />
-                    {label}
-                  </button>
-                );
-              })}
-            </div>
-            <p className="mt-4 max-w-xl text-center text-sm text-[var(--text-secondary)]">
-              {tab === "image" &&
-                "Generate stills for products, characters, or scenes. Output is square or widescreen."}
-              {tab === "video" &&
-                "Turn a prompt into a short cinematic clip. Tune duration, resolution, and motion."}
-              {tab === "audio" &&
-                "Create voiceovers, narration, or talking-head audio in EN, 中文, or ES."}
+          {/* Section intro */}
+          <div className="flex flex-col items-center text-center">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
+              Video Studio
+            </span>
+            <p className="mt-3 max-w-xl text-sm text-[var(--text-secondary)] md:text-base">
+              Turn a prompt into a short cinematic clip. Tune duration, resolution, and motion.
             </p>
           </div>
 

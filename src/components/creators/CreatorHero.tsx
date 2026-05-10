@@ -3,11 +3,11 @@ import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 const SHOWCASE = [
-  { src: "/images/models/nano-banana.webp", label: "Image · Nano Banana 2" },
-  { src: "/images/models/wan26.webp", label: "Video · Wan 2.6" },
-  { src: "/images/models/seedream.webp", label: "Image · Seedream 4.5" },
-  { src: "/images/models/kling.webp", label: "Video · Kling V3 Pro" },
-  { src: "/images/models/infinitetalk.webp", label: "Audio · InfiniteTalk" },
+  { src: "/images/models/wan22.webp", label: "Seedance 2.0" },
+  { src: "/images/models/sora.webp", label: "Veo 3.1" },
+  { src: "/images/models/kling.webp", label: "Kling 2.5 Turbo" },
+  { src: "/images/models/wan26.webp", label: "Hailuo 2.3" },
+  { src: "/images/groups/kling.jpg", label: "Cinematic" },
 ];
 
 export function CreatorHero() {
@@ -28,11 +28,14 @@ export function CreatorHero() {
           </div>
 
           <h1 className="mt-6 text-[40px] font-bold leading-[1.1] tracking-tight text-[var(--text-primary)] md:text-[64px]">
-            Create. <span className="gradient-text">Don&rsquo;t configure.</span>
+            Everyone, <span className="text-[var(--brand-purple-500)]">a director.</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-[640px] text-base leading-relaxed text-[var(--text-secondary)] md:text-lg">
-            Type a prompt. Pick a model. Get a polished image, video, or voice clip in seconds —
-            powered by the same Token360 API your favorite apps run on.
+          <p className="mx-auto mt-5 max-w-[720px] text-base leading-relaxed text-[var(--text-secondary)] md:text-lg">
+            The world&rsquo;s best video models —{" "}
+            <span className="font-semibold text-[var(--text-primary)]">Seedance 2.0, Veo, Kling, Hailuo</span>{" "}
+            — pooled into one place, routed for you. Type a sentence. Walk away. Come back to a
+            film. No timelines, no plug-ins, no learning curve. The way home video should have
+            always been.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
