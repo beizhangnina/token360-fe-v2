@@ -172,13 +172,6 @@
 }
 
 /* ── Global Utility Classes ── */
-.gradient-text {
-  background: linear-gradient(to right, var(--brand-purple-500), var(--brand-gold-500));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 .glass-surface {
   background: var(--surface-glass);
   backdrop-filter: blur(12px);

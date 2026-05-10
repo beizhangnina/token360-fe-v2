@@ -24,10 +24,10 @@ export const PLANS: Plan[] = [
     cta: "Start free",
     features: [
       { text: "50 credits / month", include: true },
-      { text: "Image generation, low resolution", include: true },
+      { text: "Short clips, 720p", include: true },
       { text: "Watermarked outputs", include: true },
       { text: "Community models only", include: true },
-      { text: "Video & audio generation", include: false },
+      { text: "1080p & longer clips", include: false },
       { text: "Personal commercial license", include: false },
     ],
   },
@@ -42,8 +42,8 @@ export const PLANS: Plan[] = [
     badge: "Most popular",
     features: [
       { text: "1,500 credits / month", include: true },
-      { text: "All image, video, audio models", include: true },
-      { text: "No watermark, full resolution", include: true },
+      { text: "All video models", include: true },
+      { text: "No watermark, 1080p output", include: true },
       { text: "Faster generation queue", include: true },
       { text: "Personal commercial license", include: true },
       { text: "Email support (24h)", include: true },
@@ -85,9 +85,10 @@ export const CREDIT_COSTS: Record<StudioTab, Record<string, number>> = {
     "qwen-image-2": 1,
   },
   video: {
-    "wan-2-6": 20,
-    "kling-v3-pro": 30,
-    "sora-class": 50,
+    "seedance-2-0": 30,
+    "veo-3-1": 50,
+    "kling-2-5-turbo": 30,
+    "hailuo-2-3": 20,
   },
   audio: {
     infinitetalk: 10,
@@ -121,7 +122,7 @@ export type FaqItem = { q: string; a: string };
 export const PRICING_FAQ: FaqItem[] = [
   {
     q: "What's a credit?",
-    a: "One generation typically costs 1–2 credits for an image, 5–10 for an audio clip, and 20–50 for video, depending on the model. The exact cost is shown next to the Generate button.",
+    a: "One generation typically costs 20–50 credits depending on the model, duration, and resolution. The exact cost is shown next to the Generate button.",
   },
   {
     q: "Do unused credits roll over?",

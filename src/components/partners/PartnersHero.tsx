@@ -23,7 +23,7 @@ export function PartnersHero() {
 
         {/* Headline */}
         <h1 className="text-[44px] font-bold leading-[1.1] tracking-tight text-[var(--text-primary)] md:text-[64px]">
-          Earn with <span className="gradient-text">Token360</span>
+          Earn with <span className="text-[var(--brand-purple-500)]">Token360</span>
         </h1>
         <p className="mx-auto mt-5 max-w-[640px] text-lg text-[var(--text-secondary)] md:text-xl">
           Promote the multimodal AI API and earn up to{" "}

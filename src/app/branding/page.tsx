@@ -107,7 +107,7 @@ function Swatch({ hex, name, cssVar, dark }: { hex: string; name: string; cssVar
 function SectionTitle({ children, id }: { children: React.ReactNode; id: string }) {
   return (
     <div id={id} className="mb-8 scroll-mt-24">
-      <div className="mb-3 h-1 w-12 rounded-full bg-gradient-to-r from-[#9633AF] to-[#D07AEB]" />
+      <div className="mb-3 h-1 w-12 rounded-full bg-[var(--brand-purple-500)]" />
       <h2 className="text-3xl font-semibold text-[var(--text-primary)]">{children}</h2>
     </div>
   );
@@ -131,7 +131,6 @@ export default function BrandingPage() {
             <a href="#typography" className="hover:text-[var(--color-accent)] transition-colors">Typography</a>
             <a href="#spacing" className="hover:text-[var(--color-accent)] transition-colors">Spacing</a>
             <a href="#components" className="hover:text-[var(--color-accent)] transition-colors">Components</a>
-            <a href="#gradients" className="hover:text-[var(--color-accent)] transition-colors">Gradients</a>
           </div>
         </div>
       </nav>
@@ -211,43 +210,6 @@ export default function BrandingPage() {
             <p className="mt-8 text-xs text-white/30">
               Theme toggled via <code className="rounded bg-white/10 px-1.5 py-0.5">class=&quot;dark&quot;</code> on <code className="rounded bg-white/10 px-1.5 py-0.5">&lt;html&gt;</code>. Persisted with next-themes in localStorage.
             </p>
-          </div>
-        </section>
-
-        {/* ═══ GRADIENTS ═══ */}
-        <section className="mb-20">
-          <SectionTitle id="gradients">Gradients</SectionTitle>
-
-          <div className="space-y-6">
-            <div>
-              <p className="mb-2 text-sm font-medium text-[var(--text-primary)]">Hero Text Gradient</p>
-              <div className="h-10 w-full rounded-lg" style={{ background: "linear-gradient(to right, #7B22A0, #B44FD0, #D07AEB)" }} />
-              <p className="mt-1.5 font-mono text-xs text-[var(--text-muted)]">from-[--brand-purple-700] via-[--brand-purple-400] to-[--brand-purple-300]</p>
-              <p className="text-xs text-[var(--text-secondary)]">Applied with bg-clip-text for transparent text effect on hero subtitle line</p>
-            </div>
-
-            <div>
-              <p className="mb-2 text-sm font-medium text-[var(--text-primary)]">CTA Button Gradient</p>
-              <div className="h-10 w-full rounded-lg" style={{ background: "#9633AF" }} />
-              <p className="mt-1.5 font-mono text-xs text-[var(--text-muted)]">solid #9633AF</p>
-              <p className="text-xs text-[var(--text-secondary)]">CTA button uses solid brand purple — no gradient</p>
-            </div>
-
-            <div>
-              <p className="mb-2 text-sm font-medium text-[var(--text-primary)]">Stat Value Gradient</p>
-              <div className="h-10 w-full rounded-lg" style={{ background: "linear-gradient(to right, #9633AF, #D07AEB)" }} />
-              <p className="mt-1.5 font-mono text-xs text-[var(--text-muted)]">from-[--color-accent] to-[--color-warning]</p>
-              <p className="text-xs text-[var(--text-secondary)]">bg-clip-text gradient on &quot;1 API&quot;, &quot;EU/US Ready&quot;, &quot;Up to -30%&quot; stat values</p>
-            </div>
-
-            <div>
-              <p className="mb-2 text-sm font-medium text-[var(--text-primary)]">Card Decorative Glow</p>
-              <div className="flex h-24 items-center justify-center rounded-lg bg-[#14121A]">
-                <div className="h-20 w-20 rounded-full" style={{ background: "radial-gradient(circle, rgba(150,51,175,0.4) 0%, transparent 70%)" }} />
-              </div>
-              <p className="mt-1.5 font-mono text-xs text-[var(--text-muted)]">radial-gradient(circle, rgba(150,51,175,0.4) 0%, transparent 70%)</p>
-              <p className="text-xs text-[var(--text-secondary)]">Purple glow overlay on AI Era feature cards, positioned absolute top-right</p>
-            </div>
           </div>
         </section>
 

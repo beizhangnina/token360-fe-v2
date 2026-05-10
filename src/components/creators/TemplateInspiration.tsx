@@ -26,7 +26,7 @@ export function TemplateInspiration({
             Start from a template
           </h2>
           <p className="mt-3 max-w-xl text-sm text-[var(--text-secondary)] md:text-base">
-            Curated prompts across image, video, and audio. One click to load into the studio.
+            Curated video prompts. One click to load into the studio.
           </p>
         </div>
 

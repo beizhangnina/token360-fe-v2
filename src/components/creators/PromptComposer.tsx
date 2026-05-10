@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Loader2, Wand2 } from "lucide-react";
 import {
   MODELS,
@@ -11,6 +12,34 @@ import {
 } from "@/lib/creators/studioData";
 
 const PROMPT_MAX = 500;
+
+const VIDEO_PLACEHOLDERS = [
+  "A grandmother teaching her granddaughter to fold dumplings, late afternoon light through the kitchen window…",
+  "My dog as a samurai, slow motion, falling cherry blossoms, golden hour…",
+  "A first kiss in a Tokyo train station at midnight, Wong Kar-wai style, neon reflections…",
+  "Cooking ramen in a tiny street stall, steam, hands at work, soft jazz outside…",
+  "A surfer paddling out at dawn, no wind, glassy water, the world still asleep…",
+  "My mother's hands, kneading dough on a Saturday in 1998, kitchen radio playing…",
+];
+
+const TRY_PROMPTS = [
+  {
+    short: "cat as a samurai, falling petals",
+    full: "My cat as a samurai, slow motion, falling cherry blossoms, golden hour",
+  },
+  {
+    short: "midnight kiss, Wong Kar-wai",
+    full: "A first kiss in a Tokyo train station at midnight, Wong Kar-wai style, neon reflections",
+  },
+  {
+    short: "ramen, steam, neon, hands",
+    full: "Cooking ramen in a tiny street stall, steam, neon, hands at work",
+  },
+  {
+    short: "surfer at dawn, glassy water",
+    full: "A surfer paddling out at dawn, no wind, glassy water, the world still asleep",
+  },
+];
 
 const inputCls =
   "w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-elevated)] px-4 py-2.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none transition-colors focus:border-[var(--brand-purple-500)] focus:ring-2 focus:ring-[var(--color-focus-ring)]";
@@ -62,6 +91,18 @@ export function PromptComposer(props: Props) {
       ? generating || actionDisabled
       : generating || prompt.trim().length === 0;
 
+  // Cycle through cinematic placeholders when the prompt is empty.
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  useEffect(() => {
+    if (tab !== "video") return;
+    const id = setInterval(() => {
+      setPlaceholderIndex((i) => (i + 1) % VIDEO_PLACEHOLDERS.length);
+    }, 4500);
+    return () => clearInterval(id);
+  }, [tab]);
+  const placeholder =
+    tab === "video" ? VIDEO_PLACEHOLDERS[placeholderIndex] : PROMPT_PLACEHOLDERS[tab];
+
   return (
     <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-elevated)] p-5">
       {/* Model picker */}
@@ -99,10 +140,27 @@ export function PromptComposer(props: Props) {
         <textarea
           value={prompt}
           onChange={(e) => onPromptChange(e.target.value.slice(0, PROMPT_MAX))}
-          placeholder={PROMPT_PLACEHOLDERS[tab]}
+          placeholder={placeholder}
           rows={5}
           className={inputCls + " mt-2 resize-none leading-relaxed"}
         />
+        {tab === "video" && (
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--text-muted)]">
+              try ›
+            </span>
+            {TRY_PROMPTS.map((t) => (
+              <button
+                key={t.short}
+                type="button"
+                onClick={() => onPromptChange(t.full)}
+                className="text-xs italic text-[var(--text-secondary)] underline decoration-[var(--border-subtle)] decoration-[1px] underline-offset-[3px] transition-colors hover:text-[var(--brand-purple-500)] hover:decoration-[var(--brand-purple-500)]"
+              >
+                {t.short}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Per-tab parameters */}
