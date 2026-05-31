@@ -23,8 +23,8 @@ export function CommissionTable() {
             </div>
             <h3 className="text-lg font-semibold text-[var(--text-primary)]">How long you earn</h3>
             <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">
-              Earn for 24 months per referred customer — the full rate for the first 12 months,
-              then half rate for months 13–24.
+              Earn for 24 months per referred customer — your full rate for months 1–12, then half
+              that rate (up to 7.5%) for months 13–24.
             </p>
           </div>
 
@@ -34,7 +34,7 @@ export function CommissionTable() {
             </div>
             <h3 className="text-lg font-semibold text-[var(--text-primary)]">How you&rsquo;re paid</h3>
             <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">
-              Paid monthly via PayPal or USDC, after a short hold for refunds.
+              Paid monthly via PayPal, after a short hold for refunds.
             </p>
           </div>
         </div>

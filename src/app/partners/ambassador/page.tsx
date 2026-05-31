@@ -5,9 +5,9 @@ import { AmbassadorHeroPanel } from "@/components/partners/AmbassadorHeroPanel";
 import { AmbassadorForm } from "@/components/partners/AmbassadorForm";
 
 export const metadata: Metadata = {
-  title: "Apply — Token360 Ambassador Program",
+  title: "Apply — Token360 Partner Program",
   description:
-    "Join the Token360 Ambassador program. Earn up to 15% of referred usage. Monthly PayPal or USDC payout, no contract.",
+    "Join the Token360 Partner Program. Earn up to 15% of referred usage. Monthly PayPal payout, no contract.",
 };
 
 export default function AmbassadorApplyPage() {

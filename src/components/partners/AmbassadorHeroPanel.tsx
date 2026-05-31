@@ -27,9 +27,9 @@ export function AmbassadorHeroPanel() {
         <h1 className="text-[44px] font-bold leading-[1.05] tracking-tight md:text-[56px]">
           Welcome to
           <br />
-          Token360<span className="text-[var(--brand-purple-400)]">{"'"}</span>s
+          the Token360
           <br />
-          Ambassador
+          Partner
           <br />
           Program
         </h1>
@@ -41,7 +41,7 @@ export function AmbassadorHeroPanel() {
       {/* Bottom: stat row + decorative ring */}
       <div className="relative z-10 mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-white/60">
         <span>
-          <span className="font-mono text-white">$1k+/mo</span> avg top earner
+          <span className="font-mono text-white">Up to 15%</span> commission
         </span>
         <span className="hidden h-1 w-1 rounded-full bg-white/30 md:inline-block" />
         <span>

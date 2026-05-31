@@ -5,24 +5,24 @@ import { ChevronDown } from "lucide-react";
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Who can apply to be an Ambassador?",
-    a: "Anyone with an audience or developer network: video/image creators, newsletter authors, indie devs, educators, community moderators. No fixed follower threshold — we assess fit and your promotion plan.",
+    q: "Who can apply?",
+    a: "Anyone with an audience or developer network: video/image creators, newsletter authors, indie devs, educators, community moderators. No fixed follower threshold — we assess fit and your promotion plan. (Agencies and resellers looking for wholesale or custom terms should email partners@token360.ai instead.)",
   },
   {
     q: "How am I paid, and when?",
-    a: "Monthly, via PayPal or USDC, after a short hold to clear refunds. There's a minimum payout threshold and no cap on total earnings.",
+    a: "Monthly, via PayPal, after a short hold to clear refunds. There's a $50 minimum payout threshold and no cap on total earnings.",
   },
   {
     q: "How is attribution tracked?",
     a: "Through your unique referral link. When someone signs up after clicking it, they're attributed to you for the 24-month earning window.",
   },
   {
-    q: "Why does my commission rate vary?",
-    a: "Commission is a share of your referrals' actual paid usage, and each model carries its own rate. Your blended rate moves with the mix of models your referrals use, up to a 15% cap. Current per-model rates are always visible in your dashboard.",
+    q: "What does “up to 15%” mean?",
+    a: "Your commission is a share of what your referred customers actually pay Token360 for usage — not a flat fee. Each model carries its own commission rate, so your effective rate is a blend that shifts with the mix of models your referrals use. That blended rate is capped at 15%, and your current per-model rates are always visible in your dashboard once you're approved.",
   },
   {
-    q: "How long do I earn on each referred customer?",
-    a: "24 months from their signup: full rate for months 1–12, half rate for months 13–24.",
+    q: "How is the 24-month earning window calculated?",
+    a: "The clock starts when your referred customer signs up through your link. For months 1–12 you earn your full rate (up to 15% blended). For months 13–24 you earn half that rate (up to 7.5%). After month 24, earnings on that customer stop — but every new customer you refer starts their own fresh 24-month window.",
   },
   {
     q: "Can I promote alongside other inference platforms?",
@@ -30,7 +30,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Are there content restrictions?",
-    a: "Standard guardrails: no deceptive marketing, no unauthorized celebrity likenesses, no NSFW content distributed to minors, and FTC-compliant #ad disclosure. The full Ambassador Terms cover the details.",
+    a: "Standard guardrails: no deceptive marketing, no unauthorized celebrity likenesses, no NSFW content distributed to minors, and FTC-compliant #ad disclosure. The full Partner Program Terms cover the details.",
   },
 ];
 

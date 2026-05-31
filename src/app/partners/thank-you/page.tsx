@@ -6,7 +6,7 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Application received — Token360",
-  description: "Your Ambassador application is in. We'll be in touch within 5 business days.",
+  description: "Your Partner Program application is in. We'll be in touch within 5 business days.",
 };
 
 export default async function ThankYouPage({

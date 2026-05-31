@@ -38,13 +38,13 @@ export function PartnersHero() {
             className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full px-7 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
             style={{ background: "var(--brand-purple-500)" }}
           >
-            Become an Ambassador <ArrowRight className="h-4 w-4" />
+            Become a partner <ArrowRight className="h-4 w-4" />
           </Link>
           <a
             href="#commission"
             className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[var(--border-subtle)] px-7 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-muted)]"
           >
-            See commission table
+            How you earn
           </a>
         </div>
 
