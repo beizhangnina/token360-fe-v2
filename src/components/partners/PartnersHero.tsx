@@ -27,8 +27,8 @@ export function PartnersHero() {
         </h1>
         <p className="mx-auto mt-5 max-w-[640px] text-lg text-[var(--text-secondary)] md:text-xl">
           Promote the multimodal AI API and earn up to{" "}
-          <span className="font-mono font-semibold text-[var(--text-primary)]">30%</span>{" "}
-          revenue share — for the life of the customer.
+          <span className="font-mono font-semibold text-[var(--text-primary)]">15%</span>{" "}
+          of what your referred customers spend on usage.
         </p>
 
         {/* CTAs */}
@@ -51,18 +51,18 @@ export function PartnersHero() {
         {/* Stat strip */}
         <div className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-[var(--text-secondary)]">
           <span>
-            <span className="font-mono font-semibold text-[var(--text-primary)]">Up to 30%</span>{" "}
+            <span className="font-mono font-semibold text-[var(--text-primary)]">Up to 15%</span>{" "}
             commission
           </span>
           <span className="hidden h-1 w-1 rounded-full bg-[var(--text-muted)] md:inline-block" />
           <span>
-            <span className="font-mono font-semibold text-[var(--text-primary)]">T+1</span>{" "}
-            settlement
+            <span className="font-mono font-semibold text-[var(--text-primary)]">24-month</span>{" "}
+            earning window
           </span>
           <span className="hidden h-1 w-1 rounded-full bg-[var(--text-muted)] md:inline-block" />
           <span>
-            <span className="font-mono font-semibold text-[var(--text-primary)]">+5%</span>{" "}
-            LATAM bonus
+            <span className="font-mono font-semibold text-[var(--text-primary)]">Monthly</span>{" "}
+            payout
           </span>
           <span className="hidden h-1 w-1 rounded-full bg-[var(--text-muted)] md:inline-block" />
           <span>No contract, no minimum</span>

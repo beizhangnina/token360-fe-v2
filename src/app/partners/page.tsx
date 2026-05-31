@@ -10,7 +10,7 @@ import { PartnerFAQ } from "@/components/partners/PartnerFAQ";
 export const metadata: Metadata = {
   title: "Partner Program — Token360",
   description:
-    "Earn up to 30% revenue share by promoting Token360. Two tracks: Ambassador (creators, indie devs) and Channel Partner (agencies, SIs, resellers).",
+    "Earn up to 15% by promoting Token360. Two tracks: Ambassador (creators, indie devs) and Channel Partner (agencies, SIs, resellers).",
 };
 
 export default function PartnersPage() {

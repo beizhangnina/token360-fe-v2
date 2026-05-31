@@ -37,11 +37,11 @@ export function TrackSelector() {
               <ul className="mt-6 space-y-2.5 text-sm text-[var(--text-primary)]">
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand-purple-500)]" />
-                  Up to <span className="font-mono font-semibold">30%</span> rev share (LATAM bonus)
+                  Up to <span className="font-mono font-semibold">15%</span> commission on referred usage
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand-purple-500)]" />
-                  T+1 PayPal / USDC payout
+                  Monthly PayPal or USDC payout
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand-purple-500)]" />
@@ -49,7 +49,7 @@ export function TrackSelector() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand-purple-500)]" />
-                  Free credits + early model access at higher tiers
+                  24-month earning window per referred customer
                 </li>
               </ul>
 

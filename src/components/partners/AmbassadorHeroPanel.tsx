@@ -34,7 +34,7 @@ export function AmbassadorHeroPanel() {
           Program
         </h1>
         <p className="mt-6 text-lg text-white/70">
-          Earn up to 30% on every paid customer.
+          Earn up to 15% of your referrals&rsquo; usage.
         </p>
       </div>
 
@@ -45,7 +45,7 @@ export function AmbassadorHeroPanel() {
         </span>
         <span className="hidden h-1 w-1 rounded-full bg-white/30 md:inline-block" />
         <span>
-          <span className="font-mono text-white">T+1</span> payout
+          <span className="font-mono text-white">Monthly</span> payout
         </span>
         <span className="hidden h-1 w-1 rounded-full bg-white/30 md:inline-block" />
         <span>No contract</span>

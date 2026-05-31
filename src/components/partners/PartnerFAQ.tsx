@@ -6,19 +6,23 @@ import { ChevronDown } from "lucide-react";
 const FAQS: { q: string; a: string }[] = [
   {
     q: "Who can apply to be an Ambassador?",
-    a: "Anyone with an audience or developer network — YouTubers, TikTok creators, newsletter authors, indie devs, AI educators, and Discord/community moderators all qualify. We don't require a minimum follower count, but we'll ask how you plan to promote.",
+    a: "Anyone with an audience or developer network: video/image creators, newsletter authors, indie devs, educators, community moderators. No fixed follower threshold — we assess fit and your promotion plan.",
   },
   {
     q: "How am I paid, and when?",
-    a: "We pay weekly on a T+1 cycle via PayPal or USDC (on-chain). We also support bank transfer for select regions. There is no minimum payout threshold — your balance ships every cycle.",
+    a: "Monthly, via PayPal or USDC, after a short hold to clear refunds. There's a minimum payout threshold and no cap on total earnings.",
   },
   {
     q: "How is attribution tracked?",
-    a: "v0.1 uses a unique discount code per Ambassador, with manual reconciliation. We're rolling out cookie-based tracking with a 30-day attribution window in the next release; existing partners will be migrated automatically.",
+    a: "Through your unique referral link. When someone signs up after clicking it, they're attributed to you for the 24-month earning window.",
   },
   {
-    q: "What's the LATAM bonus?",
-    a: "Partners with primary residence in Latin America receive an additional +5% commission across all tiers, plus higher free-credit allowances at the Growth and Top tiers. We verify region at payout, not at signup.",
+    q: "Why does my commission rate vary?",
+    a: "Commission is a share of your referrals' actual paid usage, and each model carries its own rate. Your blended rate moves with the mix of models your referrals use, up to a 15% cap. Current per-model rates are always visible in your dashboard.",
+  },
+  {
+    q: "How long do I earn on each referred customer?",
+    a: "24 months from their signup: full rate for months 1–12, half rate for months 13–24.",
   },
   {
     q: "Can I promote alongside other inference platforms?",
