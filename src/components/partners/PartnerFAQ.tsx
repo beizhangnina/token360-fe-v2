@@ -5,20 +5,24 @@ import { ChevronDown } from "lucide-react";
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Who can apply to be an Ambassador?",
-    a: "Anyone with an audience or developer network — YouTubers, TikTok creators, newsletter authors, indie devs, AI educators, and Discord/community moderators all qualify. We don't require a minimum follower count, but we'll ask how you plan to promote.",
+    q: "Who can apply?",
+    a: "Anyone with an audience or developer network: video/image creators, newsletter authors, indie devs, educators, community moderators. No fixed follower threshold — we assess fit and your promotion plan. (Agencies and resellers looking for wholesale or custom terms should email partners@token360.ai instead.)",
   },
   {
     q: "How am I paid, and when?",
-    a: "We pay weekly on a T+1 cycle via PayPal or USDC (on-chain). We also support bank transfer for select regions. There is no minimum payout threshold — your balance ships every cycle.",
+    a: "Monthly, via PayPal, after a short hold to clear refunds. There's a $50 minimum payout threshold and no cap on total earnings.",
   },
   {
     q: "How is attribution tracked?",
-    a: "v0.1 uses a unique discount code per Ambassador, with manual reconciliation. We're rolling out cookie-based tracking with a 30-day attribution window in the next release; existing partners will be migrated automatically.",
+    a: "Through your unique referral link. When someone signs up after clicking it, they're attributed to you for the 24-month earning window.",
   },
   {
-    q: "What's the LATAM bonus?",
-    a: "Partners with primary residence in Latin America receive an additional +5% commission across all tiers, plus higher free-credit allowances at the Growth and Top tiers. We verify region at payout, not at signup.",
+    q: "What does “up to 15%” mean?",
+    a: "Your commission is a share of what your referred customers actually pay Token360 for usage — not a flat fee. Each model carries its own commission rate, so your effective rate is a blend that shifts with the mix of models your referrals use. That blended rate is capped at 15%, and your current per-model rates are always visible in your dashboard once you're approved.",
+  },
+  {
+    q: "How is the 24-month earning window calculated?",
+    a: "The clock starts when your referred customer signs up through your link. For months 1–12 you earn your full rate (up to 15% blended). For months 13–24 you earn half that rate (up to 7.5%). After month 24, earnings on that customer stop — but every new customer you refer starts their own fresh 24-month window.",
   },
   {
     q: "Can I promote alongside other inference platforms?",
@@ -26,7 +30,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Are there content restrictions?",
-    a: "Standard guardrails: no deceptive marketing, no unauthorized celebrity likenesses, no NSFW content distributed to minors, and FTC-compliant #ad disclosure. The full Ambassador Terms cover the details.",
+    a: "Standard guardrails: no deceptive marketing, no unauthorized celebrity likenesses, no NSFW content distributed to minors, and FTC-compliant #ad disclosure. The full Partner Program Terms cover the details.",
   },
 ];
 

@@ -14,12 +14,12 @@ const steps = [
   {
     icon: Megaphone,
     title: "Promote",
-    body: "Get a unique discount code, branded assets, and demo prompts.",
+    body: "Get your unique referral link, branded assets, and demo prompts.",
   },
   {
     icon: Wallet,
     title: "Earn",
-    body: "Track referrals in your dashboard. T+1 payout via PayPal or USDC.",
+    body: "Track referrals in your dashboard. Monthly payout via PayPal.",
   },
 ];
 
@@ -32,7 +32,7 @@ export function HowItWorks() {
             How it works
           </h2>
           <p className="mt-3 text-[var(--text-secondary)]">
-            Four steps. From signup to first payout in under a week.
+            Four steps. From signup to a live referral link in days.
           </p>
         </div>
 
